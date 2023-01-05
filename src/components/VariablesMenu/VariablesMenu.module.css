@@ -1,0 +1,58 @@
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  height: 100%;
+  display: flex;
+  pointer-events: none;
+}
+
+.container > div {
+  margin: auto 5px;
+}
+
+.button {
+  width: 20px;
+  pointer-events: all;
+}
+
+.button > img {
+  height: 20px;
+  transition: height var(--transition-time), transform var(--transition-time);
+}
+
+.button > img:hover {
+  height: 30px;
+}
+
+.buttonRight > img {
+  transform: rotate(180deg);
+}
+
+.variablesContainer {
+  transition: max-width var(--transition-time);
+  overflow: hidden;
+}
+
+.variablesList {
+  width: 200px;
+  padding: 0;
+}
+
+.variablesList > li {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 7px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: background-color var(--transition-time), opacity var(--transition-time);
+  opacity: 0.6;
+  pointer-events: all;
+}
+
+li.selectedVariable,
+.variablesList > li:hover {
+  background-color: rgba(0 0 0 / 50%);
+  opacity: 1;
+}

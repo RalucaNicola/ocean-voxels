@@ -10,12 +10,20 @@ body {
   background: radial-gradient(#0d5f7d, #111111);
 }
 
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
 /***********************
 * Define css variables
 ************************/
 
 :root {
   --border-radius: 10px;
+  --transition-time: 300ms;
 }
 
 /***********************
