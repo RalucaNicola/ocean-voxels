@@ -1,0 +1,54 @@
+@import '@arcgis/core/assets/esri/themes/light/main.css';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  color: var(--calcite-ui-text-1);
+}
+
+/***********************
+* Define css variables
+************************/
+
+:root {
+  --border-radius: 10px;
+}
+
+
+/***********************
+* Overwrite css variables
+* in calcite theme
+************************/
+
+/* .calcite-theme-light {
+  --calcite-ui-brand: rgb(255, 255, 255);
+  --calcite-ui-brand-hover: rgb(175, 175, 175);
+  --calcite-ui-border-2: rgba(255, 255, 255, 0.6);
+} */
+
+
+/************************
+* Overwrites default
+* scrollbar styles
+************************/
+
+/* ::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(238 143 31 / 0.1);
+  border: none;
+  border-radius: var(--border-radius);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(238 143 31 / 0.8);
+} */
