@@ -7,6 +7,7 @@ body {
   height: 100%;
   width: 100%;
   color: var(--calcite-ui-text-1);
+  background: radial-gradient(#0d5f7d, #111111);
 }
 
 /***********************
@@ -16,7 +17,6 @@ body {
 :root {
   --border-radius: 10px;
 }
-
 
 /***********************
 * Overwrite css variables
@@ -28,7 +28,6 @@ body {
   --calcite-ui-brand-hover: rgb(175, 175, 175);
   --calcite-ui-border-2: rgba(255, 255, 255, 0.6);
 } */
-
 
 /************************
 * Overwrites default

@@ -22,7 +22,18 @@ const Map: FC<MapProps> = ({ webmapId, children }: MapProps) => {
           portalItem: {
             id: webmapId
           }
-        })
+        }),
+        alphaCompositingEnabled: true,
+        qualityProfile: 'high',
+        viewingMode: 'local',
+        environment: {
+          background: {
+            type: 'color',
+            color: [255, 0, 0, 0]
+          },
+          starsEnabled: false,
+          atmosphereEnabled: false
+        }
       });
 
       view.when(() => {
