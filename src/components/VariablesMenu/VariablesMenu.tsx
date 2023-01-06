@@ -1,24 +1,15 @@
 import * as styles from './VariablesMenu.module.css';
 import { useState } from 'react';
-
-const variables = [
-  'temperature',
-  'salinity',
-  'dissolved O2',
-  'phosphate',
-  'nitrate',
-  'silicate',
-  'ecological marine units'
-];
+import { selectVoxelVariables } from '../../store/Map/selectors';
+import { setSelectedVariable } from '../../store/Map/reducer';
+import { useSelector, useDispatch } from 'react-redux';
 
 const VariablesMenu = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const [selectedVariable, setSelectedVariable] = useState('nitrate');
+  const voxelVariables = useSelector(selectVoxelVariables);
+  const dispatch = useDispatch();
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
-  };
-  const selectVariable = (variable: string) => {
-    setSelectedVariable(variable);
   };
   return (
     <div className={styles.container}>
@@ -29,15 +20,15 @@ const VariablesMenu = () => {
       </div>
       <div className={styles.variablesContainer} style={collapsed ? { maxWidth: 0 } : { maxWidth: '1000px' }}>
         <ul className={styles.variablesList}>
-          {variables.map((variable, index) => (
+          {voxelVariables.map((variable, index) => (
             <li
               key={index}
-              className={variable === selectedVariable ? styles.selectedVariable : ''}
+              className={variable.selected ? styles.selectedVariable : ''}
               onClick={() => {
-                selectVariable(variable);
+                dispatch(setSelectedVariable(variable.name));
               }}
             >
-              {variable}
+              {variable.name}
             </li>
           ))}
         </ul>

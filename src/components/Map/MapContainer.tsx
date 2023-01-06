@@ -1,5 +1,5 @@
 import Map from './Map';
-import { WEB_SCENE_ID } from '../../constants';
+import { WEB_SCENE_ID } from '../../config';
 import VoxelLayer from '../VoxelLayer';
 
 const MapContainer = () => {
