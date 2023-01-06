@@ -25,7 +25,7 @@ const VariablesMenu = () => {
               key={index}
               className={variable.selected ? styles.selectedVariable : ''}
               onClick={() => {
-                dispatch(setSelectedVariable(variable.name));
+                dispatch(setSelectedVariable(variable.id));
               }}
             >
               {variable.name}

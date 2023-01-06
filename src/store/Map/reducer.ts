@@ -21,9 +21,9 @@ const slice = createSlice({
     setVoxelVariables: (state, action: PayloadAction<VoxelVariable[]>) => {
       state.voxelVariables = action.payload;
     },
-    setSelectedVariable: (state, action: PayloadAction<string>) => {
+    setSelectedVariable: (state, action: PayloadAction<number>) => {
       state.voxelVariables = state.voxelVariables.map((variable) => {
-        if (variable.name === action.payload) {
+        if (variable.id === action.payload) {
           variable.selected = true;
         } else {
           variable.selected = false;
