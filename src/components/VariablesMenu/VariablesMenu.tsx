@@ -15,7 +15,7 @@ const VariablesMenu = () => {
     <div className={styles.container}>
       <div>
         <button className={`${styles.button} ${collapsed ? styles.buttonRight : ''}`} onClick={toggleCollapsed}>
-          <img src='/assets/arrows-back.svg'></img>
+          <img src='./assets/arrows-back.svg'></img>
         </button>
       </div>
       <div className={styles.variablesContainer} style={collapsed ? { maxWidth: 0 } : { maxWidth: '1000px' }}>
