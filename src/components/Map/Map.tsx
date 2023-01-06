@@ -23,6 +23,7 @@ const Map: FC<MapProps> = ({ webmapId, children }: MapProps) => {
             id: webmapId
           }
         }),
+        ui: { components: [] },
         alphaCompositingEnabled: true,
         qualityProfile: 'high',
         viewingMode: 'local',
