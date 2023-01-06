@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectShowVoxel, selectVariable } from '../../store/Map/selectors';
 import { setVoxelVariables } from '../../store/Map/reducer';
 import { VoxelVariable } from '../../types/types';
-import { VOXEL_LAYER_TITLE, VARIABLES } from '../../config';
+import { VOXEL_LAYER_TITLE, VARIABLE_MAP, INITIAL_SELECTED_VARIABLE } from '../../config';
 
 type Props = {
   view?: ISceneView;
@@ -38,19 +38,20 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
       setLayer(layer);
       layer.when(() => {
         const voxelVariables: VoxelVariable[] = [];
-        layer.variables.forEach((variable) => {
-          if (VARIABLES.includes(variable.name)) {
+        for (let key in VARIABLE_MAP) {
+          if (VARIABLE_MAP.hasOwnProperty(key)) {
+            const variable = layer.variables.find((v) => v.name === key);
             const { id, name, unit, description } = variable;
             voxelVariables.push({
               description,
-              name,
+              name: VARIABLE_MAP[name],
               id,
               unit,
               continuous: variable.renderingFormat.continuity === 'continuous',
-              selected: variable.name === VARIABLES[0]
+              selected: key === INITIAL_SELECTED_VARIABLE
             });
           }
-        });
+        }
         dispatch(setVoxelVariables(voxelVariables));
       });
     }
