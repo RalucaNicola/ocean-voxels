@@ -3,6 +3,7 @@ import Switch from '../Switch';
 import MapContainer from '../Map/MapContainer';
 import VariablesMenu from '../VariablesMenu';
 import Title from '../Title';
+import Footer from '../Footer';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
       </div>
       <VariablesMenu></VariablesMenu>
       <Title></Title>
+      <Footer></Footer>
     </div>
   );
 };

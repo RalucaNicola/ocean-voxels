@@ -1,0 +1,30 @@
+.appFooter {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: var(--calcite-font-size--2);
+  padding: 0 10px;
+  pointer-events: all;
+}
+
+.esriLogo {
+  height: 30px;
+  overflow: hidden;
+}
+
+.esriLogo a {
+  border-bottom: none;
+}
+.esriLogo a:hover {
+  border-bottom: none;
+}
+
+.esriLogo:hover img {
+  border-bottom: none;
+  height: 30px;
+}
+
+.esriLogo img {
+  height: 25px;
+  transition: height 300ms;
+}
