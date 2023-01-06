@@ -2,6 +2,7 @@ import * as styles from './App.module.css';
 import Switch from '../Switch';
 import MapContainer from '../Map/MapContainer';
 import VariablesMenu from '../VariablesMenu';
+import Title from '../Title';
 
 const App = () => {
   return (
@@ -11,6 +12,7 @@ const App = () => {
         <Switch></Switch>
       </div>
       <VariablesMenu></VariablesMenu>
+      <Title></Title>
     </div>
   );
 };

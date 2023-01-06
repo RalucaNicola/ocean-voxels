@@ -1,0 +1,18 @@
+.title {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.title h1 {
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  margin: 0;
+  letter-spacing: 3px;
+}
+
+.capitalLetter {
+  font-size: 1.7rem;
+  opacity: 0.8;
+}
