@@ -18,7 +18,10 @@ const VariablesMenu = () => {
           <img src='./assets/arrows-back.svg'></img>
         </button>
       </div>
-      <div className={styles.variablesContainer} style={collapsed ? { maxWidth: 0 } : { maxWidth: '1000px' }}>
+      <div
+        className={styles.variablesContainer}
+        style={collapsed ? { maxWidth: 0, opacity: 0 } : { maxWidth: '1000px', opacity: 1 }}
+      >
         <ul className={styles.variablesList}>
           {voxelVariables.map((variable, index) => (
             <li

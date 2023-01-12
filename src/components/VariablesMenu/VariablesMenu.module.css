@@ -37,6 +37,7 @@
 
 .variablesList {
   width: 200px;
+  transition: opacity var(--transition-time);
   padding: 0;
 }
 
