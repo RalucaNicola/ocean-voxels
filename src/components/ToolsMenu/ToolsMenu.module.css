@@ -1,0 +1,46 @@
+.container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  display: flex;
+  background: rgba(0 0 0 / 50%);
+  overflow: hidden;
+}
+
+.arrowContainer {
+  margin: auto 7px;
+}
+
+.button {
+  width: 20px;
+  transform: rotate(180deg);
+  transition: transform var(--transition-time);
+  pointer-events: all;
+}
+
+.button > img {
+  height: 20px;
+  transition: transform var(--transition-time);
+  transform-origin: 100% 50%;
+}
+
+.button > img:hover {
+  transform: scaleX(1.5) scaleY(1.5);
+}
+
+.arrowLeft {
+  transform: rotate(0deg);
+}
+
+.toolsContainer {
+  transition: max-width var(--transition-time);
+}
+
+.fixedWidth {
+  padding: 20px;
+  width: 30vw;
+  box-sizing: border-box;
+  transition: opacity var(--transition-time);
+}
