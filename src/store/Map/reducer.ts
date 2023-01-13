@@ -1,14 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { VoxelVariable } from '../../types/types';
+import { LegendInfo, VoxelVariable } from '../../types/types';
 
 export type MapState = {
   showVoxel: boolean;
   voxelVariables: VoxelVariable[];
+  legendInfos: LegendInfo[];
 };
 
 const initialMapState: MapState = {
   showVoxel: true,
-  voxelVariables: []
+  voxelVariables: [],
+  legendInfos: []
 };
 
 const slice = createSlice({
@@ -30,10 +32,13 @@ const slice = createSlice({
         }
         return variable;
       });
+    },
+    setLegendInfos: (state, action: PayloadAction<LegendInfo[]>) => {
+      state.legendInfos = action.payload;
     }
   }
 });
 
-export const { voxelToggled, setVoxelVariables, setSelectedVariable } = slice.actions;
+export const { voxelToggled, setVoxelVariables, setSelectedVariable, setLegendInfos } = slice.actions;
 
 export const { reducer } = slice;

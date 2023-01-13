@@ -55,6 +55,6 @@
 
 li.selectedVariable,
 .variablesList > li:hover {
-  background-color: rgba(0 0 0 / 50%);
+  background-color: rgba(0 0 0 / 70%);
   opacity: 1;
 }
