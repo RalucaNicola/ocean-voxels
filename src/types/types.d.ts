@@ -37,3 +37,13 @@ export interface LegendProps {
 }
 
 export type EmuVariable = 'Temperature' | 'Salinity' | 'Dissolved O2' | 'Phosphate' | 'Nitrate' | 'Silicate';
+
+export interface SlicePlaneInfo {
+  latitude: number;
+  longitude: number;
+  z: number;
+  tilt: number;
+  width: number;
+  height: number;
+  heading: number;
+}

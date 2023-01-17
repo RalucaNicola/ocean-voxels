@@ -12,7 +12,25 @@ export const VARIABLE_MAP = {
   silicate: 'Silicate'
 };
 
-export const INITIAL_SELECTED_VARIABLE = 'temp';
+export const VERTICAL_SLICE_PLANE = {
+  latitude: 0,
+  longitude: 0,
+  z: 0,
+  tilt: 90,
+  width: 2.5 * Math.pow(10, 7),
+  height: Math.pow(10, 7),
+  heading: 90
+};
+
+export const HORIZONTAL_SLICE_PLANE = {
+  latitude: 0,
+  longitude: 0,
+  z: Math.pow(10, 6),
+  tilt: 0,
+  width: 2.5 * Math.pow(10, 7),
+  height: 3 * Math.pow(10, 7),
+  heading: 90
+};
 
 export const EMU_INFO_DATA = [
   {

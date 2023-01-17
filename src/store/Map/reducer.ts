@@ -1,25 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LegendInfo, VoxelVariable } from '../../types/types';
 
+type SlicePlaneOrientation = 'vertical' | 'horizontal';
+
 export type MapState = {
-  showVoxel: boolean;
   voxelVariables: VoxelVariable[];
   legendInfos: LegendInfo[];
+  sliceEnabled: boolean;
+  slicePlaneOrientation: SlicePlaneOrientation;
 };
 
 const initialMapState: MapState = {
-  showVoxel: true,
   voxelVariables: [],
-  legendInfos: []
+  legendInfos: [],
+  sliceEnabled: false,
+  slicePlaneOrientation: 'vertical'
 };
 
 const slice = createSlice({
   name: 'Map',
   initialState: initialMapState,
   reducers: {
-    voxelToggled: (state) => {
-      state.showVoxel = !state.showVoxel;
-    },
     setVoxelVariables: (state, action: PayloadAction<VoxelVariable[]>) => {
       state.voxelVariables = action.payload;
     },
@@ -35,10 +36,17 @@ const slice = createSlice({
     },
     setLegendInfos: (state, action: PayloadAction<LegendInfo[]>) => {
       state.legendInfos = action.payload;
+    },
+    toggleSlice: (state) => {
+      state.sliceEnabled = !state.sliceEnabled;
+    },
+    setSlicePlaneOrientation: (state, action: PayloadAction<SlicePlaneOrientation>) => {
+      state.slicePlaneOrientation = action.payload;
     }
   }
 });
 
-export const { voxelToggled, setVoxelVariables, setSelectedVariable, setLegendInfos } = slice.actions;
+export const { setVoxelVariables, setSelectedVariable, setLegendInfos, toggleSlice, setSlicePlaneOrientation } =
+  slice.actions;
 
 export const { reducer } = slice;

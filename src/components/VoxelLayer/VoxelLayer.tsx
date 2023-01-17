@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from 'react';
 import ISceneView from 'esri/views/SceneView';
 import IVoxelLayer from 'esri/layers/VoxelLayer';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectShowVoxel, selectVariable, selectLegendInfo } from '../../store/Map/selectors';
+import { selectVariable, selectLegendInfo } from '../../store/Map/selectors';
 import { setVoxelVariables, setLegendInfos } from '../../store/Map/reducer';
 import { LegendInfo, VoxelUniqueValue, VoxelVariable } from '../../types/types';
 import { VOXEL_LAYER_TITLE, VARIABLE_MAP, INITIAL_SELECTED_VARIABLE } from '../../config';
@@ -14,7 +14,6 @@ type Props = {
 };
 
 const VoxelLayer: FC<Props> = ({ view }: Props) => {
-  const visible = useSelector(selectShowVoxel);
   const selectedVariable = useSelector(selectVariable);
   const legendInfo = useSelector(selectLegendInfo);
   const [layer, setLayer] = useState<IVoxelLayer>();
@@ -25,12 +24,6 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
       layer.currentVariableId = selectedVariable.id;
     }
   }, [layer, selectedVariable]);
-
-  useEffect(() => {
-    if (layer) {
-      layer.visible = visible;
-    }
-  }, [layer, visible]);
 
   useEffect(() => {
     if (layer && legendInfo && !legendInfo.continuous) {
