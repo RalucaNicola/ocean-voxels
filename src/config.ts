@@ -32,20 +32,22 @@ export const HORIZONTAL_SLICE_PLANE = {
   heading: 90
 };
 
+export const INITIAL_SELECTED_VARIABLE = 'general_name';
+
 export const EMU_INFO_DATA = [
   {
     id: 0,
-    fill: '#E1E1E1',
+    fill: '#ffffff',
     description: 'Epipelagic, Moderate to Cool, Euhaline, Oxic, Medium Nitrate, Low Phosphate, Low Silicate'
   },
   {
     id: 1,
-    fill: '#E1E1E1',
+    fill: '#ef5b72',
     description: 'Mesopelagic, Cold, Polyhaline, Severely Hypoxic, Low Nitrate, Medium Phosphate, High Silicate'
   },
   {
     id: 2,
-    fill: '#E1E1E1',
+    fill: '#dc651e',
     description: 'Epipelagic, Cold, Polyhaline, Hypoxic, Low Nitrate, Low Phosphate, Low Silicate'
   },
   {
@@ -55,7 +57,7 @@ export const EMU_INFO_DATA = [
   },
   {
     id: 4,
-    fill: '#E1E1E1',
+    fill: '#90278e',
     description: 'Mesopelagic, Cold, Polyhaline, Severely Hypoxic, Low Nitrate, High Phosphate, High Silicate'
   },
   {
@@ -65,17 +67,17 @@ export const EMU_INFO_DATA = [
   },
   {
     id: 6,
-    fill: '#E1E1E1',
+    fill: '#ffd300',
     description: 'Epipelagic, Cold, Polyhaline, Oxic, Low Nitrate, Low Phosphate, Low Silicate'
   },
   {
     id: 7,
-    fill: '#E1E1E1',
+    fill: '#c30075',
     description: 'Epiplagic, Moderate to Cool, Mesohaline, Oxic, Low Nitrate, Low Phosphate, Low Silicate'
   },
   {
     id: 8,
-    fill: '#ccb0ba',
+    fill: '#c2abbb',
     description: 'Epipelagic, Moderate to Cool, Euhaline, Oxic, Medium Nitrate, Low Phosphate, Low Silicate'
   },
   {
@@ -95,7 +97,7 @@ export const EMU_INFO_DATA = [
   },
   {
     id: 12,
-    fill: '#E1E1E1',
+    fill: '#6aa644',
     description: 'Epipelagic, Very Cold, Mesohaline, Severely Hypoxic, Low Nitrate, Low Phosphate, Low Silicate'
   },
   {
@@ -110,17 +112,17 @@ export const EMU_INFO_DATA = [
   },
   {
     id: 15,
-    fill: '#E1E1E1',
+    fill: '#b31e8d',
     description: 'Bathypelagic, Cold, Polyhaline, Anoxic, Low Nitrate, High Phosphate, High Silicate'
   },
   {
     id: 16,
-    fill: '#E1E1E1',
+    fill: '#00707e',
     description: 'Epipelagic, Very Cold, Mesohaline, Highly Oxic, Low Nitrate, Low Phosphate, Low Silicate'
   },
   {
     id: 17,
-    fill: '#E1E1E1',
+    fill: '#af5232',
     description: 'Epipelagic, Cold, Mesohaline, Oxic, Low Nitrate, Low Phosphate, Low Silicate'
   },
   {
@@ -135,7 +137,7 @@ export const EMU_INFO_DATA = [
   },
   {
     id: 20,
-    fill: '#E1E1E1',
+    fill: '#008f4c',
     description: 'Epipelagic, Very Cold, Mesohaline, Oxic, Low Nitrate, Low Phosphate, Low Silicate'
   },
   {
@@ -146,7 +148,7 @@ export const EMU_INFO_DATA = [
   },
   {
     id: 22,
-    fill: '#E1E1E1',
+    fill: '#7c9540',
     description: 'Epipelagic, Cold, Mesohaline, Hypoxic, Low Nitrate, Low Phosphate, Low Silicate'
   },
   {
@@ -171,12 +173,12 @@ export const EMU_INFO_DATA = [
   },
   {
     id: 27,
-    fill: '#E1E1E1',
+    fill: '#832E62',
     description: 'Epipelagic, Very Cold, Polyhaline, Oxic, Low Nitrate, Low Phosphate, Low Silicate'
   },
   {
     id: 28,
-    fill: '#E1E1E1',
+    fill: '#567542',
     description: 'Epiplagic, Moderate to Cool, Mesohaline, Oxic, Low Nitrate, Low Phosphate, Low Silicate'
   },
   {
@@ -186,7 +188,7 @@ export const EMU_INFO_DATA = [
   },
   {
     id: 30,
-    fill: '#b4d7e7',
+    fill: '#add5e7',
     description: 'Epipelagic, Very Cold, Euhaline, Oxic, Medium Nitrate, Low Phosphate, Low Silicate'
   },
   {
@@ -196,27 +198,27 @@ export const EMU_INFO_DATA = [
   },
   {
     id: 32,
-    fill: '#E1E1E1',
+    fill: '#bf6a85',
     description: 'Epipelagic, Warm to Very Warm, Mesohaline, Oxic, Low Nitrate, Low Phosphate, Low Silicate'
   },
   {
     id: 33,
-    fill: '#7591ff',
+    fill: '#5d7ed9',
     description: 'Mesopelagic, Very Cold, Euhaline, Severely Hypoxic, High Nitrate, Medium Phosphate, Medium Silicate'
   },
   {
     id: 34,
-    fill: '#E1E1E1',
+    fill: '#f58c58',
     description: 'Mesopelagic, Very Cold, Polyhaline, Anoxic, Low Nitrate, High Phosphate, High Silicate'
   },
   {
     id: 35,
-    fill: '#9edbff',
+    fill: '#9bd9ec',
     description: 'Epipelagic, Frozen/Superchilled, Euhaline, Oxic, Low Nitrate, Low Phosphate, Low Silicate'
   },
   {
     id: 36,
-    fill: '#1a52aa',
+    fill: '#ff52aa',
     description: 'Bathypelagic, Very Cold, Euhaline, Oxic, Medium Nitrate, Low Phosphate, Low Silicate'
   },
   {
