@@ -23,7 +23,7 @@ const ToolsMenu = () => {
         {' '}
         <div className={styles.fixedWidth} style={collapsed ? { opacity: 0 } : { opacity: 1 }}>
           <div className={styles.sliceContainer}>
-            <CalciteLabel layout='inline-space-between'>
+            <CalciteLabel layout='inline-space-between' scale='l'>
               Enable slice{' '}
               <CalciteSwitch
                 checked={sliceEnabled ? true : undefined}

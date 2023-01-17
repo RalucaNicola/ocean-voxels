@@ -4,9 +4,9 @@
 }
 
 .emuList > li {
-  border: 1px solid white;
+  border-radius: 7px;
   padding: 10px 0;
-  margin: 10px;
+  margin: 15px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -20,11 +20,13 @@
 .emuNumber {
   flex-grow: 0;
   flex-shrink: 0;
-  flex-basis: 40px;
+  flex-basis: 50px;
   text-align: center;
+  font-weight: bold;
+  padding: 15px;
 }
 
 .emuName {
-  border-left: 1px solid white;
+  border-left: 1px solid rgb(200, 200, 200);
   padding-left: 10px;
 }

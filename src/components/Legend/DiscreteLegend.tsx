@@ -20,8 +20,8 @@ const ListItem = ({ enabled, color, value, setClick }: ListItemProps) => {
     backgroundColor = `rgba(${r} ${g} ${b} / ${a * 100}%)`;
     fontColor = 'black';
   } else {
-    backgroundColor = 'transparent';
-    fontColor = 'white';
+    backgroundColor = 'rgba(255 255 255 / 15%)';
+    fontColor = 'rgb(200, 200, 200)';
   }
   return (
     <li
@@ -31,7 +31,10 @@ const ListItem = ({ enabled, color, value, setClick }: ListItemProps) => {
         setClick(value);
       }}
     >
-      <div className={styles.emuNumber}>{value}</div>
+      <div className={styles.emuNumber}>
+        EMU<br></br>
+        {value}
+      </div>
       <div className={styles.emuName} style={{ borderColor: fontColor }}>
         {EMU_INFO_DATA.filter((d) => d.id === value)[0]?.description}
       </div>
