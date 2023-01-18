@@ -3,6 +3,8 @@ import { Children, cloneElement, FC, useRef, useState, ReactNode, ReactElement, 
 import ISceneView from 'esri/views/SceneView';
 import SceneView from '@arcgis/core/views/SceneView';
 import WebScene from '@arcgis/core/WebScene';
+import { ExaggeratedElevationLayer } from './ExaggeratedTerrain';
+import Collection from '@arcgis/core/core/Collection';
 
 interface MapProps {
   webmapId: string;
@@ -40,6 +42,9 @@ const Map: FC<MapProps> = ({ webmapId, children }: MapProps) => {
       view.when(() => {
         setView(view);
         window['view'] = view;
+        // add exaggerated terrain
+        const elevationLayer = new ExaggeratedElevationLayer({ exaggeration: 40 });
+        view.map.ground.layers = new Collection([elevationLayer]);
       });
     } catch (err) {
       console.error(err);
