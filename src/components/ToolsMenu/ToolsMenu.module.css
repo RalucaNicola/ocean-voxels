@@ -50,10 +50,16 @@
 
 .sliceContainer,
 .sectionContainer {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .sliceOptions {
   display: flex;
   gap: 10px;
+}
+
+.surfaceGraphic {
+  height: 70px;
+  margin: 0 auto;
+  display: block;
 }

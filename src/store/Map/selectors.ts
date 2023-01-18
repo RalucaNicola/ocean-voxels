@@ -1,4 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
+import { VoxelVariable } from '../../types/types';
 import { RootState } from '../storeConfiguration';
 
 export const selectVoxelVariables = (state: RootState) => state.Map.voxelVariables;
@@ -34,3 +35,11 @@ export const selectRenderMode = (state: RootState) => {
 };
 
 export const selectOffsetFromGround = (state: RootState) => state.Map.offsetFromGround;
+export const selectCurrentIsosurfaceValue = createSelector(selectVariable, (selectVariable: VoxelVariable) => {
+  if (selectVariable && selectVariable.continuous) {
+    return selectVariable.isosurfaceValue;
+  } else {
+    return null;
+  }
+});
+export const selectIsosurfaceEnabled = (state: RootState) => state.Map.isosurfaceEnabled;

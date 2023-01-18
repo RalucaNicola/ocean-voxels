@@ -9,6 +9,8 @@ export type VoxelVariable = {
   unit: string;
   continuous: boolean;
   selected: boolean;
+  isosurfaceValue?: number;
+  range?: number[];
 };
 
 type VoxelColorStop = {

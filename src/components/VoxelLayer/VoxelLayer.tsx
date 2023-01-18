@@ -9,7 +9,9 @@ import {
   selectSectionEnabled,
   selectSectionParameters,
   selectRenderMode,
-  selectOffsetFromGround
+  selectOffsetFromGround,
+  selectCurrentIsosurfaceValue,
+  selectIsosurfaceEnabled
 } from '../../store/Map/selectors';
 import { setVoxelVariables, setLegendInfos } from '../../store/Map/reducer';
 import { LegendInfo, VoxelUniqueValue, VoxelVariable } from '../../types/types';
@@ -24,6 +26,8 @@ type Props = {
 const VoxelLayer: FC<Props> = ({ view }: Props) => {
   const selectedVariable = useSelector(selectVariable);
   const offsetFromGround = useSelector(selectOffsetFromGround);
+  const currentIsosurfaceValue = useSelector(selectCurrentIsosurfaceValue);
+  const isosurfaceEnabled = useSelector(selectIsosurfaceEnabled);
   const legendInfo = useSelector(selectLegendInfo);
   const sectionEnabled = useSelector(selectSectionEnabled);
   const sectionParameters = useSelector(selectSectionParameters);
@@ -44,10 +48,30 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
   }, [layer, selectedVariable]);
 
   useEffect(() => {
+    if (layer && currentIsosurfaceValue && selectedVariable) {
+      const color = layer.getColorForContinuousDataValue(selectedVariable.id, currentIsosurfaceValue, false);
+      const isosurfaces: Collection<__esri.VoxelIsosurface> = new Collection([
+        {
+          value: currentIsosurfaceValue,
+          colorLocked: true,
+          color
+        }
+      ]);
+      layer.getVariableStyle(selectedVariable.id).isosurfaces = isosurfaces;
+    }
+  }, [layer, currentIsosurfaceValue, selectedVariable]);
+
+  useEffect(() => {
     if (layer) {
       layer.enableDynamicSections = sectionEnabled;
     }
   }, [layer, sectionEnabled]);
+
+  useEffect(() => {
+    if (layer) {
+      layer.enableIsosurfaces = isosurfaceEnabled;
+    }
+  }, [layer, isosurfaceEnabled]);
 
   useEffect(() => {
     if (layer && sectionParameters) {
@@ -92,15 +116,21 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
             const variable = layer.variables.find((v) => v.name === key);
             const { id, name, unit, description } = variable;
             const continuous = variable.renderingFormat.continuity === 'continuous';
-            voxelVariables.push({
+            const style = layer.getVariableStyle(id);
+            const variableInfo: VoxelVariable = {
               description,
               name: VARIABLE_MAP[name],
               id,
               unit,
               continuous,
               selected: key === INITIAL_SELECTED_VARIABLE
-            });
-            const style = layer.getVariableStyle(id);
+            };
+            if (continuous) {
+              const range = style.transferFunction.stretchRange;
+              variableInfo.isosurfaceValue = Math.round(((range[0] + range[1]) / 2) * 100) / 100;
+              variableInfo.range = range;
+            }
+            voxelVariables.push(variableInfo);
             const legendInfo: LegendInfo = {
               id,
               continuous

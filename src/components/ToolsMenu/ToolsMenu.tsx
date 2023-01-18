@@ -10,6 +10,7 @@ import { setSlicePlaneOrientation, toggleSection, toggleSlice } from '../../stor
 import { useDispatch, useSelector } from 'react-redux';
 import Section from './Section';
 import OffsetSlider from './OffsetSlider';
+import IsosurfaceSlider from './IsosurfaceSlider';
 
 const ToolsMenu = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -71,6 +72,7 @@ const ToolsMenu = () => {
           </div>
           <OffsetSlider></OffsetSlider>
           <LegendContainer></LegendContainer>
+          <IsosurfaceSlider></IsosurfaceSlider>
         </div>
       </div>
       <div className={styles.arrowContainer}>

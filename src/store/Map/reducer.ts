@@ -60,6 +60,17 @@ const slice = createSlice({
     },
     setOffsetFromGround: (state, action: PayloadAction<number>) => {
       state.offsetFromGround = action.payload;
+    },
+    toggleIsosurface: (state) => {
+      state.isosurfaceEnabled = !state.isosurfaceEnabled;
+    },
+    setSelectedIsosurfaceValue: (state, action: PayloadAction<{ id: number; isosurfaceValue: number }>) => {
+      state.voxelVariables = state.voxelVariables.map((variable) => {
+        if (variable.id === action.payload.id) {
+          variable.isosurfaceValue = action.payload.isosurfaceValue;
+        }
+        return variable;
+      });
     }
   }
 });
@@ -72,7 +83,9 @@ export const {
   setSlicePlaneOrientation,
   toggleSection,
   setSectionParameters,
-  setOffsetFromGround
+  setOffsetFromGround,
+  setSelectedIsosurfaceValue,
+  toggleIsosurface
 } = slice.actions;
 
 export const { reducer } = slice;
