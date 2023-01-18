@@ -1,3 +1,4 @@
+import * as styles from './ToolsMenu.module.css';
 import '@esri/calcite-components/dist/components/calcite-label';
 import '@esri/calcite-components/dist/components/calcite-slider';
 import { CalciteLabel, CalciteSlider } from '@esri/calcite-components-react';
@@ -12,7 +13,7 @@ const OffsetSlider = () => {
     <CalciteLabel scale='l'>
       Offset from ground in meters:
       <CalciteSlider
-        style={{ padding: '0 20px' }}
+        className={styles.slider}
         min={0}
         max={2 * Math.pow(10, 6)}
         value={offsetFromGround}

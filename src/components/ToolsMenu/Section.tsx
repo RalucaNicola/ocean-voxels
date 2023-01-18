@@ -1,3 +1,4 @@
+import * as styles from './ToolsMenu.module.css';
 import '@esri/calcite-components/dist/components/calcite-label';
 import '@esri/calcite-components/dist/components/calcite-slider';
 import { CalciteLabel, CalciteSlider } from '@esri/calcite-components-react';
@@ -14,6 +15,7 @@ const Section = () => {
       <CalciteLabel>
         Latitude:
         <CalciteSlider
+          className={styles.slider}
           min={-90}
           max={90}
           value={sectionParameters.y}
@@ -29,6 +31,7 @@ const Section = () => {
       <CalciteLabel>
         Longitude:
         <CalciteSlider
+          className={styles.slider}
           min={-180}
           max={180}
           step={1}
@@ -43,6 +46,7 @@ const Section = () => {
       <CalciteLabel>
         Tilt:
         <CalciteSlider
+          className={styles.slider}
           min={0}
           max={90}
           step={1}
@@ -57,6 +61,7 @@ const Section = () => {
       <CalciteLabel>
         Orientation:
         <CalciteSlider
+          className={styles.slider}
           min={0}
           max={360}
           step={1}

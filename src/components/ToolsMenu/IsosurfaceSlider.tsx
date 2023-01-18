@@ -27,6 +27,7 @@ const IsosurfaceSlider = () => {
             <>
               <img className={styles.surfaceGraphic} src='./assets/isosurface.png'></img>
               <CalciteSlider
+                className={styles.slider}
                 min={selectedVariable.range[0]}
                 max={selectedVariable.range[1]}
                 value={selectedVariable.isosurfaceValue}
