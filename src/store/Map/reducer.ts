@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LegendInfo, VoxelVariable } from '../../types/types';
+import { INITIAL_SECTION_PARAMETERS } from '../../config';
+import { LegendInfo, SectionParameters, VoxelVariable } from '../../types/types';
 
 type SlicePlaneOrientation = 'vertical' | 'horizontal';
 
@@ -8,13 +9,19 @@ export type MapState = {
   legendInfos: LegendInfo[];
   sliceEnabled: boolean;
   slicePlaneOrientation: SlicePlaneOrientation;
+  sectionEnabled: boolean;
+  sectionParameters: SectionParameters;
+  isosurfaceEnabled: boolean;
 };
 
 const initialMapState: MapState = {
   voxelVariables: [],
   legendInfos: [],
   sliceEnabled: false,
-  slicePlaneOrientation: 'vertical'
+  slicePlaneOrientation: 'vertical',
+  sectionEnabled: false,
+  sectionParameters: INITIAL_SECTION_PARAMETERS,
+  isosurfaceEnabled: false
 };
 
 const slice = createSlice({
@@ -42,11 +49,24 @@ const slice = createSlice({
     },
     setSlicePlaneOrientation: (state, action: PayloadAction<SlicePlaneOrientation>) => {
       state.slicePlaneOrientation = action.payload;
+    },
+    toggleSection: (state) => {
+      state.sectionEnabled = !state.sectionEnabled;
+    },
+    setSectionParameters: (state, action: PayloadAction<SectionParameters>) => {
+      state.sectionParameters = action.payload;
     }
   }
 });
 
-export const { setVoxelVariables, setSelectedVariable, setLegendInfos, toggleSlice, setSlicePlaneOrientation } =
-  slice.actions;
+export const {
+  setVoxelVariables,
+  setSelectedVariable,
+  setLegendInfos,
+  toggleSlice,
+  setSlicePlaneOrientation,
+  toggleSection,
+  setSectionParameters
+} = slice.actions;
 
 export const { reducer } = slice;

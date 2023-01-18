@@ -48,7 +48,8 @@
   overflow: auto;
 }
 
-.sliceContainer {
+.sliceContainer,
+.sectionContainer {
   margin-bottom: 2rem;
 }
 

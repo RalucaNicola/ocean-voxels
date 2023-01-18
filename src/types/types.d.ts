@@ -47,3 +47,11 @@ export interface SlicePlaneInfo {
   height: number;
   heading: number;
 }
+
+export interface SectionParameters {
+  x: number;
+  y: number;
+  z: number;
+  tilt: number;
+  orientation: number;
+}

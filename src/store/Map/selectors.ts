@@ -21,3 +21,14 @@ export const selectLegendInfo = createSelector(
 
 export const selectSliceEnabled = (state: RootState) => state.Map.sliceEnabled;
 export const selectSlicePlaneOrientation = (state: RootState) => state.Map.slicePlaneOrientation;
+
+export const selectSectionEnabled = (state: RootState) => state.Map.sectionEnabled;
+export const selectSectionParameters = (state: RootState) => state.Map.sectionParameters;
+
+export const selectRenderMode = (state: RootState) => {
+  if (state.Map.sectionEnabled || state.Map.isosurfaceEnabled) {
+    return 'surfaces';
+  } else {
+    return 'volume';
+  }
+};

@@ -5,14 +5,15 @@ import '@esri/calcite-components/dist/components/calcite-label';
 import '@esri/calcite-components/dist/components/calcite-button';
 import { CalciteButton, CalciteLabel, CalciteSwitch } from '@esri/calcite-components-react';
 import LegendContainer from '../Legend/LegendContainer';
-import { selectSliceEnabled } from '../../store/Map/selectors';
-import { setSlicePlaneOrientation } from '../../store/Map/reducer';
+import { selectSliceEnabled, selectSectionEnabled } from '../../store/Map/selectors';
+import { setSlicePlaneOrientation, toggleSection, toggleSlice } from '../../store/Map/reducer';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleSlice } from '../../store/Map/reducer';
+import Section from './Section';
 
 const ToolsMenu = () => {
   const [collapsed, setCollapsed] = useState(false);
   const sliceEnabled = useSelector(selectSliceEnabled);
+  const sectionEnabled = useSelector(selectSectionEnabled);
   const dispatch = useDispatch();
   const toggleCollapsed = () => {
     setCollapsed(!collapsed);
@@ -22,6 +23,7 @@ const ToolsMenu = () => {
       <div className={styles.toolsContainer} style={collapsed ? { maxWidth: '0' } : { maxWidth: '30vw' }}>
         {' '}
         <div className={styles.fixedWidth} style={collapsed ? { opacity: 0 } : { opacity: 1 }}>
+          {/* Slice container */}
           <div className={styles.sliceContainer}>
             <CalciteLabel layout='inline-space-between' scale='l'>
               Enable slice{' '}
@@ -55,7 +57,17 @@ const ToolsMenu = () => {
               <></>
             )}
           </div>
-
+          {/* Section container */}
+          <div className={styles.sectionContainer}>
+            <CalciteLabel layout='inline-space-between' scale='l'>
+              Enable section{' '}
+              <CalciteSwitch
+                checked={sectionEnabled ? true : undefined}
+                onCalciteSwitchChange={() => dispatch(toggleSection())}
+              ></CalciteSwitch>
+            </CalciteLabel>
+            {sectionEnabled ? <Section></Section> : <></>}
+          </div>
           <LegendContainer></LegendContainer>
         </div>
       </div>

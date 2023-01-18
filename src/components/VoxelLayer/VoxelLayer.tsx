@@ -3,11 +3,18 @@ import { FC, useEffect, useState } from 'react';
 import ISceneView from 'esri/views/SceneView';
 import IVoxelLayer from 'esri/layers/VoxelLayer';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectVariable, selectLegendInfo } from '../../store/Map/selectors';
+import {
+  selectVariable,
+  selectLegendInfo,
+  selectSectionEnabled,
+  selectSectionParameters,
+  selectRenderMode
+} from '../../store/Map/selectors';
 import { setVoxelVariables, setLegendInfos } from '../../store/Map/reducer';
 import { LegendInfo, VoxelUniqueValue, VoxelVariable } from '../../types/types';
 import { VOXEL_LAYER_TITLE, VARIABLE_MAP, INITIAL_SELECTED_VARIABLE } from '../../config';
 import Collection from '@arcgis/core/core/Collection';
+import { Point } from '@arcgis/core/geometry';
 
 type Props = {
   view?: ISceneView;
@@ -16,6 +23,9 @@ type Props = {
 const VoxelLayer: FC<Props> = ({ view }: Props) => {
   const selectedVariable = useSelector(selectVariable);
   const legendInfo = useSelector(selectLegendInfo);
+  const sectionEnabled = useSelector(selectSectionEnabled);
+  const sectionParameters = useSelector(selectSectionParameters);
+  const renderMode = useSelector(selectRenderMode);
   const [layer, setLayer] = useState<IVoxelLayer>();
   const dispatch = useDispatch();
 
@@ -24,6 +34,26 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
       layer.currentVariableId = selectedVariable.id;
     }
   }, [layer, selectedVariable]);
+
+  useEffect(() => {
+    if (layer) {
+      layer.enableDynamicSections = sectionEnabled;
+    }
+  }, [layer, sectionEnabled]);
+
+  useEffect(() => {
+    if (layer && sectionParameters) {
+      const { orientation, tilt, x, y, z } = sectionParameters;
+      const [vx, vy, vz] = layer.getVolume(null).computeVoxelSpaceLocation(new Point({ x, y, z }));
+      layer.getVolumeStyle(null).dynamicSections = new Collection([{ orientation, tilt, point: [vx, vy, vz] }]);
+    }
+  }, [layer, sectionParameters]);
+
+  useEffect(() => {
+    if (layer) {
+      layer.renderMode = renderMode;
+    }
+  }, [layer, renderMode]);
 
   useEffect(() => {
     if (layer && legendInfo && !legendInfo.continuous) {

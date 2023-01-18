@@ -32,6 +32,14 @@ export const HORIZONTAL_SLICE_PLANE = {
   heading: 90
 };
 
+export const INITIAL_SECTION_PARAMETERS = {
+  x: 0,
+  y: 0,
+  z: 0,
+  tilt: 60,
+  orientation: 90
+};
+
 export const INITIAL_SELECTED_VARIABLE = 'general_name';
 
 export const EMU_INFO_DATA = [
