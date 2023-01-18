@@ -26,14 +26,6 @@ export const selectSlicePlaneOrientation = (state: RootState) => state.Map.slice
 export const selectSectionEnabled = (state: RootState) => state.Map.sectionEnabled;
 export const selectSectionParameters = (state: RootState) => state.Map.sectionParameters;
 
-export const selectRenderMode = (state: RootState) => {
-  if (state.Map.sectionEnabled || state.Map.isosurfaceEnabled) {
-    return 'surfaces';
-  } else {
-    return 'volume';
-  }
-};
-
 export const selectOffsetFromGround = (state: RootState) => state.Map.offsetFromGround;
 export const selectCurrentIsosurfaceValue = createSelector(selectVariable, (selectVariable: VoxelVariable) => {
   if (selectVariable && selectVariable.continuous) {
@@ -43,3 +35,19 @@ export const selectCurrentIsosurfaceValue = createSelector(selectVariable, (sele
   }
 });
 export const selectIsosurfaceEnabled = (state: RootState) => state.Map.isosurfaceEnabled;
+
+export const selectRenderMode = createSelector(
+  selectVariable,
+  selectSectionEnabled,
+  selectIsosurfaceEnabled,
+  (selectVariable, selectSectionEnabled, selectIsosurfaceEnabled) => {
+    if (selectSectionEnabled) {
+      return 'surfaces';
+    } else {
+      if (selectVariable && selectVariable.continuous && selectIsosurfaceEnabled) {
+        return 'surfaces';
+      }
+    }
+    return 'volume';
+  }
+);
