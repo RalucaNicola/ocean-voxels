@@ -62,15 +62,17 @@ const DiscreteLegend = ({ legendInfo, changedLegendSelection }: DiscreteLegendPr
   return (
     <ul className={styles.emuList}>
       {legendInfo.uniqueValues.map((uv, index) => {
-        return (
-          <ListItem
-            enabled={uv.enabled}
-            color={uv.color}
-            value={uv.value}
-            setClick={toggleVisibility}
-            key={index}
-          ></ListItem>
-        );
+        if (uv.value >= 0 && uv.value <= 37) {
+          return (
+            <ListItem
+              enabled={uv.enabled}
+              color={uv.color}
+              value={uv.value}
+              setClick={toggleVisibility}
+              key={index}
+            ></ListItem>
+          );
+        }
       })}
     </ul>
   );
