@@ -12,6 +12,7 @@ export type MapState = {
   sectionEnabled: boolean;
   sectionParameters: SectionParameters;
   isosurfaceEnabled: boolean;
+  offsetFromGround: number;
 };
 
 const initialMapState: MapState = {
@@ -21,7 +22,8 @@ const initialMapState: MapState = {
   slicePlaneOrientation: 'vertical',
   sectionEnabled: false,
   sectionParameters: INITIAL_SECTION_PARAMETERS,
-  isosurfaceEnabled: false
+  isosurfaceEnabled: false,
+  offsetFromGround: 500000
 };
 
 const slice = createSlice({
@@ -55,6 +57,9 @@ const slice = createSlice({
     },
     setSectionParameters: (state, action: PayloadAction<SectionParameters>) => {
       state.sectionParameters = action.payload;
+    },
+    setOffsetFromGround: (state, action: PayloadAction<number>) => {
+      state.offsetFromGround = action.payload;
     }
   }
 });
@@ -66,7 +71,8 @@ export const {
   toggleSlice,
   setSlicePlaneOrientation,
   toggleSection,
-  setSectionParameters
+  setSectionParameters,
+  setOffsetFromGround
 } = slice.actions;
 
 export const { reducer } = slice;

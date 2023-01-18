@@ -32,3 +32,5 @@ export const selectRenderMode = (state: RootState) => {
     return 'volume';
   }
 };
+
+export const selectOffsetFromGround = (state: RootState) => state.Map.offsetFromGround;

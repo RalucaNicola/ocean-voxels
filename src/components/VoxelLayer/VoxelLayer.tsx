@@ -8,7 +8,8 @@ import {
   selectLegendInfo,
   selectSectionEnabled,
   selectSectionParameters,
-  selectRenderMode
+  selectRenderMode,
+  selectOffsetFromGround
 } from '../../store/Map/selectors';
 import { setVoxelVariables, setLegendInfos } from '../../store/Map/reducer';
 import { LegendInfo, VoxelUniqueValue, VoxelVariable } from '../../types/types';
@@ -22,12 +23,19 @@ type Props = {
 
 const VoxelLayer: FC<Props> = ({ view }: Props) => {
   const selectedVariable = useSelector(selectVariable);
+  const offsetFromGround = useSelector(selectOffsetFromGround);
   const legendInfo = useSelector(selectLegendInfo);
   const sectionEnabled = useSelector(selectSectionEnabled);
   const sectionParameters = useSelector(selectSectionParameters);
   const renderMode = useSelector(selectRenderMode);
   const [layer, setLayer] = useState<IVoxelLayer>();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (layer && offsetFromGround) {
+      layer.getVolumeStyle(null).verticalOffset = offsetFromGround;
+    }
+  }, [offsetFromGround]);
 
   useEffect(() => {
     if (layer && selectedVariable) {

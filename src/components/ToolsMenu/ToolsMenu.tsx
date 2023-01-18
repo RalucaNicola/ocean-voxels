@@ -9,6 +9,7 @@ import { selectSliceEnabled, selectSectionEnabled } from '../../store/Map/select
 import { setSlicePlaneOrientation, toggleSection, toggleSlice } from '../../store/Map/reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import Section from './Section';
+import OffsetSlider from './OffsetSlider';
 
 const ToolsMenu = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -68,6 +69,7 @@ const ToolsMenu = () => {
             </CalciteLabel>
             {sectionEnabled ? <Section></Section> : <></>}
           </div>
+          <OffsetSlider></OffsetSlider>
           <LegendContainer></LegendContainer>
         </div>
       </div>
