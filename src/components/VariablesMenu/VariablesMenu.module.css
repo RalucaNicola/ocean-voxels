@@ -6,6 +6,8 @@
   height: 100%;
   display: flex;
   pointer-events: none;
+  color: white;
+  font-weight: bold;
 }
 
 .container > div {
