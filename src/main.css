@@ -32,9 +32,10 @@ button {
 ************************/
 
 .calcite-theme-dark {
-  --calcite-ui-text-1: rgb(200, 200, 200);
-  --calcite-ui-brand: rgb(200, 200, 200);
+  --calcite-ui-text-1: rgb(210, 210, 210);
+  --calcite-ui-brand: rgb(210, 210, 210);
   --calcite-ui-brand-hover: rgb(175, 175, 175);
+  --calcite-ui-foreground-2: transparent;
   /* --calcite-ui-border-2: rgba(255, 255, 255, 0.6); */
 }
 

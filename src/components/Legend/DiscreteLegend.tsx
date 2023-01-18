@@ -21,7 +21,7 @@ const ListItem = ({ enabled, color, value, setClick }: ListItemProps) => {
     fontColor = 'black';
   } else {
     backgroundColor = 'rgba(255 255 255 / 15%)';
-    fontColor = 'rgb(200, 200, 200)';
+    fontColor = 'rgb(210, 210, 210)';
   }
   return (
     <li
