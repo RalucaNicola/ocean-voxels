@@ -19,6 +19,10 @@ import { VOXEL_LAYER_TITLE, VARIABLE_MAP, INITIAL_SELECTED_VARIABLE } from '../.
 import Collection from '@arcgis/core/core/Collection';
 import { Point } from '@arcgis/core/geometry';
 
+const formatDecimals = (value: number): number => {
+  return Math.round((value * 100) / 100);
+};
+
 type Props = {
   view?: ISceneView;
 };
@@ -127,8 +131,8 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
             };
             if (continuous) {
               const range = style.transferFunction.stretchRange;
-              variableInfo.isosurfaceValue = Math.round(((range[0] + range[1]) / 2) * 100) / 100;
-              variableInfo.range = range;
+              variableInfo.isosurfaceValue = formatDecimals((range[0] + range[1]) / 2);
+              variableInfo.range = [formatDecimals(range[0]), formatDecimals(range[1])];
             }
             voxelVariables.push(variableInfo);
             const legendInfo: LegendInfo = {
