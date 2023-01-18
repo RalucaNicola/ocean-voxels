@@ -10,8 +10,9 @@ const OffsetSlider = () => {
   const dispatch = useDispatch();
   return (
     <CalciteLabel scale='l'>
-      Offset from ground
+      Offset from ground in meters:
       <CalciteSlider
+        style={{ padding: '0 20px' }}
         min={0}
         max={2 * Math.pow(10, 6)}
         value={offsetFromGround}

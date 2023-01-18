@@ -38,7 +38,7 @@ const LegendContainer = () => {
           )}
         </div>
       ) : (
-        'loading'
+        'Loading legend...'
       )}
     </div>
   );

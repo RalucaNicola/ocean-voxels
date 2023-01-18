@@ -36,7 +36,7 @@ export const INITIAL_SECTION_PARAMETERS = {
   x: 0,
   y: 0,
   z: 0,
-  tilt: 60,
+  tilt: 90,
   orientation: 90
 };
 
