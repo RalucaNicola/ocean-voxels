@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { INITIAL_SECTION_PARAMETERS } from '../../config';
 import { LegendInfo, SectionParameters, VoxelVariable } from '../../types/types';
 
-type SlicePlaneOrientation = 'vertical' | 'horizontal';
+type SlicePlaneOrientation = 'vertical' | 'horizontal' | 'custom';
 
 export type MapState = {
   voxelVariables: VoxelVariable[];

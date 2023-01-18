@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { FC, useEffect, useRef, useState } from 'react';
 import ISceneView from 'esri/views/SceneView';
 import SliceViewModel from '@arcgis/core/widgets/Slice/SliceViewModel';
@@ -8,6 +8,7 @@ import SlicePlane from '@arcgis/core/analysis/SlicePlane';
 import Point from '@arcgis/core/geometry/Point';
 import { watch } from '@arcgis/core/core/reactiveUtils';
 import { SlicePlaneInfo } from '../../types/types';
+import { setSlicePlaneOrientation } from '../../store/Map/reducer';
 
 type Props = {
   view?: ISceneView;
@@ -33,6 +34,7 @@ const SliceLayer: FC<Props> = ({ view }: Props) => {
   const sliceEnabled = useSelector(selectSliceEnabled);
   const slicePlaneOrientation = useSelector(selectSlicePlaneOrientation);
   const sliceViewmodel = useRef(null);
+  const dispatch = useDispatch();
   useEffect(() => {
     if (sliceViewmodel.current) {
       if (sliceEnabled) {
@@ -77,6 +79,7 @@ const SliceLayer: FC<Props> = ({ view }: Props) => {
               height: shape.height,
               heading: shape.heading
             });
+            dispatch(setSlicePlaneOrientation('custom'));
           }
         }
       );
