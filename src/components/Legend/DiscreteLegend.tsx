@@ -17,7 +17,7 @@ const ListItem = ({ enabled, color, value, setClick }: ListItemProps) => {
   let backgroundColor, fontColor;
   const { r, g, b, a } = color;
   if (enabled) {
-    backgroundColor = `rgba(${r} ${g} ${b} / ${a * 100}%)`;
+    backgroundColor = `rgba(${r} ${g} ${b} / 80%)`;
     fontColor = 'black';
   } else {
     backgroundColor = 'rgba(255 255 255 / 15%)';
