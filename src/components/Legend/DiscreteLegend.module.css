@@ -30,3 +30,8 @@
   border-left: 1px solid var(--calcite-ui-text-1);
   padding-left: 10px;
 }
+
+.selectOptions {
+  display: flex;
+  gap: 10px;
+}

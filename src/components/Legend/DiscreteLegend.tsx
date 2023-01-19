@@ -1,6 +1,8 @@
 import { EMU_INFO_DATA } from '../../config';
 import { LegendInfo, LegendProps, VoxelUniqueValue } from '../../types/types';
 import * as styles from './DiscreteLegend.module.css';
+import '@esri/calcite-components/dist/components/calcite-button';
+import { CalciteButton } from '@esri/calcite-components-react';
 
 interface ListItemProps {
   enabled: boolean;
@@ -15,7 +17,7 @@ interface DiscreteLegendProps extends LegendProps {
 
 const ListItem = ({ enabled, color, value, setClick }: ListItemProps) => {
   let backgroundColor, fontColor;
-  const { r, g, b, a } = color;
+  const { r, g, b } = color;
   if (enabled) {
     backgroundColor = `rgba(${r} ${g} ${b} / 80%)`;
     fontColor = 'black';
@@ -43,6 +45,16 @@ const ListItem = ({ enabled, color, value, setClick }: ListItemProps) => {
 };
 
 const DiscreteLegend = ({ legendInfo, changedLegendSelection }: DiscreteLegendProps) => {
+  const categorySelectionAll = legendInfo.uniqueValues.reduce(
+    (accumulator, currentValue) => accumulator && currentValue.enabled,
+    legendInfo.uniqueValues[0].enabled
+  );
+  console.log(categorySelectionAll);
+  const categorySelectionNone = !legendInfo.uniqueValues.reduce(
+    (accumulator, currentValue) => accumulator || currentValue.enabled,
+    legendInfo.uniqueValues[0].enabled
+  );
+  console.log(categorySelectionNone);
   const toggleVisibility = (value: number) => {
     const updatedUniqueValues: VoxelUniqueValue[] = [];
     legendInfo.uniqueValues.forEach((uv) => {
@@ -60,9 +72,47 @@ const DiscreteLegend = ({ legendInfo, changedLegendSelection }: DiscreteLegendPr
   };
 
   return (
-    <ul className={styles.emuList}>
-      {legendInfo.uniqueValues.map((uv, index) => {
-        if (uv.value >= 0 && uv.value <= 37) {
+    <>
+      <div className={styles.selectOptions}>
+        <CalciteButton
+          appearance='outline'
+          width='half'
+          disabled={categorySelectionAll ? true : undefined}
+          onClick={() => {
+            const updatedUniqueValues: VoxelUniqueValue[] = [];
+            legendInfo.uniqueValues.forEach((uv) => {
+              updatedUniqueValues.push({ ...uv, enabled: true });
+            });
+            const updatedLegendInfo: LegendInfo = {
+              ...legendInfo,
+              uniqueValues: updatedUniqueValues
+            };
+            changedLegendSelection(updatedLegendInfo);
+          }}
+        >
+          Select all
+        </CalciteButton>
+        <CalciteButton
+          appearance='outline'
+          width='half'
+          disabled={categorySelectionNone ? true : undefined}
+          onClick={() => {
+            const updatedUniqueValues: VoxelUniqueValue[] = [];
+            legendInfo.uniqueValues.forEach((uv) => {
+              updatedUniqueValues.push({ ...uv, enabled: false });
+            });
+            const updatedLegendInfo: LegendInfo = {
+              ...legendInfo,
+              uniqueValues: updatedUniqueValues
+            };
+            changedLegendSelection(updatedLegendInfo);
+          }}
+        >
+          Select none
+        </CalciteButton>
+      </div>
+      <ul className={styles.emuList}>
+        {legendInfo.uniqueValues.map((uv, index) => {
           return (
             <ListItem
               enabled={uv.enabled}
@@ -72,9 +122,9 @@ const DiscreteLegend = ({ legendInfo, changedLegendSelection }: DiscreteLegendPr
               key={index}
             ></ListItem>
           );
-        }
-      })}
-    </ul>
+        })}
+      </ul>
+    </>
   );
 };
 

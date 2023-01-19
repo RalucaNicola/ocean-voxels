@@ -164,12 +164,14 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
               legendInfo.uniqueValues = [];
               style.uniqueValues.forEach((uv: VoxelUniqueValue) => {
                 const { r, g, b, a } = uv.color;
-                legendInfo.uniqueValues.push({
-                  label: uv.label,
-                  value: uv.value,
-                  color: { r, g, b, a },
-                  enabled: uv.enabled
-                });
+                if (uv.value >= 0 && uv.value <= 37) {
+                  legendInfo.uniqueValues.push({
+                    label: uv.label,
+                    value: uv.value,
+                    color: { r, g, b, a },
+                    enabled: uv.enabled
+                  });
+                }
               });
             }
             legendInfos.push(legendInfo);
