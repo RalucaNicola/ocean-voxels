@@ -1,0 +1,21 @@
+.tooltipContainer {
+  position: absolute;
+  padding: 10px;
+  background: rgba(0 0 0 / 70%);
+  pointer-events: none;
+}
+
+.tooltipTitle {
+  padding: 0;
+  margin: 0;
+  font-weight: bold;
+}
+
+.colorFill {
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  vertical-align: text-bottom;
+  margin: 4px;
+}

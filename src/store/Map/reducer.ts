@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { INITIAL_SECTION_PARAMETERS } from '../../config';
-import { LegendInfo, SectionParameters, VoxelVariable } from '../../types/types';
+import { LegendInfo, SectionParameters, TooltipData, VoxelVariable } from '../../types/types';
 
 type SlicePlaneOrientation = 'vertical' | 'horizontal' | 'custom';
+type TooltipPosition = { x: number; y: number };
 
 export type MapState = {
   voxelVariables: VoxelVariable[];
@@ -13,6 +14,9 @@ export type MapState = {
   sectionParameters: SectionParameters;
   isosurfaceEnabled: boolean;
   offsetFromGround: number;
+  hoverEnabled: boolean;
+  tooltipPosition: TooltipPosition | null;
+  tooltipData: TooltipData | null;
 };
 
 const initialMapState: MapState = {
@@ -23,7 +27,10 @@ const initialMapState: MapState = {
   sectionEnabled: false,
   sectionParameters: INITIAL_SECTION_PARAMETERS,
   isosurfaceEnabled: false,
-  offsetFromGround: 500000
+  offsetFromGround: 500000,
+  hoverEnabled: false,
+  tooltipPosition: null,
+  tooltipData: null
 };
 
 const slice = createSlice({
@@ -71,6 +78,15 @@ const slice = createSlice({
         }
         return variable;
       });
+    },
+    toggleHoverEnabled: (state) => {
+      state.hoverEnabled = !state.hoverEnabled;
+    },
+    setTooltipPosition: (state, action: PayloadAction<TooltipPosition>) => {
+      state.tooltipPosition = action.payload;
+    },
+    setTooltipData: (state, action: PayloadAction<TooltipData>) => {
+      state.tooltipData = action.payload;
     }
   }
 });
@@ -85,7 +101,10 @@ export const {
   setSectionParameters,
   setOffsetFromGround,
   setSelectedIsosurfaceValue,
-  toggleIsosurface
+  toggleIsosurface,
+  toggleHoverEnabled,
+  setTooltipPosition,
+  setTooltipData
 } = slice.actions;
 
 export const { reducer } = slice;

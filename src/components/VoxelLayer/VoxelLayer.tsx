@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 
 import ISceneView from 'esri/views/SceneView';
 import IVoxelLayer from 'esri/layers/VoxelLayer';
@@ -11,11 +11,12 @@ import {
   selectRenderMode,
   selectOffsetFromGround,
   selectCurrentIsosurfaceValue,
-  selectIsosurfaceEnabled
+  selectIsosurfaceEnabled,
+  selectHoverEnabled
 } from '../../store/Map/selectors';
-import { setVoxelVariables, setLegendInfos } from '../../store/Map/reducer';
-import { LegendInfo, VoxelUniqueValue, VoxelVariable } from '../../types/types';
-import { VOXEL_LAYER_TITLE, VARIABLE_MAP, INITIAL_SELECTED_VARIABLE } from '../../config';
+import { setVoxelVariables, setLegendInfos, setTooltipPosition, setTooltipData } from '../../store/Map/reducer';
+import { LegendInfo, TooltipData, VoxelUniqueValue, VoxelVariable } from '../../types/types';
+import { VOXEL_LAYER_TITLE, VARIABLE_MAP, INITIAL_SELECTED_VARIABLE, EMU_UNITS, EMU_INFO_DATA } from '../../config';
 import Collection from '@arcgis/core/core/Collection';
 import { Point } from '@arcgis/core/geometry';
 
@@ -36,6 +37,9 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
   const sectionEnabled = useSelector(selectSectionEnabled);
   const sectionParameters = useSelector(selectSectionParameters);
   const renderMode = useSelector(selectRenderMode);
+  const hoverEnabled = useSelector(selectHoverEnabled);
+  const mouseMoveHandler = useRef(null);
+  const variables = useRef([]);
   const [layer, setLayer] = useState<IVoxelLayer>();
   const dispatch = useDispatch();
 
@@ -118,7 +122,11 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
         for (let key in VARIABLE_MAP) {
           if (VARIABLE_MAP.hasOwnProperty(key)) {
             const variable = layer.variables.find((v) => v.name === key);
-            const { id, name, unit, description } = variable;
+            const { id, name, description } = variable;
+            let unit = '';
+            if (EMU_UNITS.hasOwnProperty(VARIABLE_MAP[key])) {
+              unit = EMU_UNITS[VARIABLE_MAP[key]];
+            }
             const continuous = variable.renderingFormat.continuity === 'continuous';
             const style = layer.getVariableStyle(id);
             const variableInfo: VoxelVariable = {
@@ -129,6 +137,7 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
               continuous,
               selected: key === INITIAL_SELECTED_VARIABLE
             };
+            variables.current.push(variableInfo);
             if (continuous) {
               const range = style.transferFunction.stretchRange;
               variableInfo.isosurfaceValue = formatDecimals((range[0] + range[1]) / 2);
@@ -171,6 +180,65 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
       });
     }
   }, [view]);
+
+  useEffect(() => {
+    let mouseLeaveHandler: IHandle = null;
+    if (view && layer) {
+      if (hoverEnabled) {
+        mouseLeaveHandler = view.on('pointer-leave', (evt) => {
+          dispatch(setTooltipPosition(null));
+        });
+        mouseMoveHandler.current = view.on('pointer-move', (evt: __esri.ViewPointerMoveEvent) => {
+          view.hitTest(evt, { include: [layer] }).then((result: __esri.SceneViewHitTestResult) => {
+            if (result.results.length > 0) {
+              const attributes = (result.results[0] as __esri.SceneViewGraphicHit).graphic.attributes;
+              dispatch(setTooltipPosition(result.screenPoint));
+              const variable = variables.current.find(
+                (variable) => variable.description === attributes['Voxel.ServiceVariableLabel']
+              );
+              let variableValue = attributes['Voxel.ServiceValue'].split(' ')[0];
+              let color = null;
+              if (variable.description === 'general_name') {
+                const emuInfo = EMU_INFO_DATA.find((info) => info.id === Number(variableValue));
+                const value = `EMU ${variableValue}: ${emuInfo.description}`;
+                variableValue = value;
+                color = emuInfo.fill;
+              } else {
+                color = layer.getColorForContinuousDataValue(variable.id, Number(variableValue), false).toHex();
+              }
+              const data: TooltipData = {
+                depth: attributes['Voxel.ServiceDepth'],
+                value: variableValue,
+                variableLabel: variable.name,
+                unit: variable.unit,
+                color: color
+              };
+              dispatch(setTooltipData(data));
+            } else {
+              dispatch(setTooltipPosition(null));
+            }
+          });
+        });
+      } else {
+        if (mouseMoveHandler.current) {
+          mouseMoveHandler.current.remove();
+          mouseMoveHandler.current = null;
+          dispatch(setTooltipPosition(null));
+        }
+      }
+    }
+    return () => {
+      if (mouseMoveHandler.current) {
+        mouseMoveHandler.current.remove();
+        mouseMoveHandler.current = null;
+        dispatch(setTooltipPosition(null));
+      }
+      if (mouseLeaveHandler) {
+        mouseLeaveHandler.remove();
+        mouseLeaveHandler = null;
+      }
+    };
+  }, [view, layer, hoverEnabled]);
 
   return null;
 };

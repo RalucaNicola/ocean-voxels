@@ -57,3 +57,11 @@ export interface SectionParameters {
   tilt: number;
   orientation: number;
 }
+
+export type TooltipData = {
+  depth: string;
+  value: string;
+  variableLabel: string;
+  unit: string;
+  color: string;
+};
