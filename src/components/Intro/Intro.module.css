@@ -35,11 +35,11 @@
   color: var(--calcite-ui-text-1);
   text-decoration: none;
   transition: color var(--transition-time);
-  background: linear-gradient(180deg, transparent 60%, rgb(255 209 111/ 50%) 80%, rgb(255 209 111/ 50%) 90%);
+  background: linear-gradient(180deg, transparent 60%, rgb(111 221 255/ 50%) 80%, rgb(111 221 255/ 50%) 90%);
 }
 
 .introTitle > a:hover {
-  color: rgb(255, 209, 111);
+  color: rgb(111, 221, 255);
 }
 
 .introButton {
