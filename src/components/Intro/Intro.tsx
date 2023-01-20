@@ -11,12 +11,14 @@ const Intro = () => {
   return (
     introScreenEnabled && (
       <div className={styles.introContainer}>
+        <div className={styles.solutionImage} style={{ opacity: visibleState === 'solution' ? 0.6 : 0 }}></div>
         <div className={styles.introContent}>
           <div className={styles.titleContainer}>
             {visibleState === 'problem' ? (
               <p className={styles.introTitle}>
-                In a world of accelerating climate change and population pressures, a better understanding of the ocean
-                is necessary to reduce the risk of critically damanging or exhausting marine resources.
+                The ocean's health is fundamental to earth's survival, yet 95 percent of the ocean remains a mystery. In
+                a world of accelerating climate change and population pressures, a better understanding of the ocean is
+                necessary to reduce the risk of critically damaging or exhausting marine resources.
               </p>
             ) : (
               <p className={styles.introTitle}>

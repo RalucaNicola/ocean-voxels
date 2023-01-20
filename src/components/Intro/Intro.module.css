@@ -8,11 +8,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('./assets/ocean-image.jpeg');
+  background-image: url('./assets/ocean-resized.jpg');
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.solutionImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('./assets/annotations.png');
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0;
+  transition: opacity 500ms;
+  pointer-events: none;
 }
 
 .introContent {

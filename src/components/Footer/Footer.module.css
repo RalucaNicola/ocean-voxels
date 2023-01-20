@@ -56,3 +56,8 @@ a {
 a:hover {
   color: rgba(255 255 255 / 80%);
 }
+
+.attribution {
+  padding: 10px;
+  background-color: rgba(1, 46, 68, 0.85);
+}
