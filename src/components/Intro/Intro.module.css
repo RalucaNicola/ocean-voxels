@@ -1,0 +1,59 @@
+.introContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* positioning content on the center */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('./assets/ocean-image.jpeg');
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.introContent {
+  width: min(60%, 1000px);
+  max-height: 80%;
+}
+
+.titleContainer,
+.buttons {
+  height: 50%;
+  text-align: center;
+}
+
+.introTitle {
+  font-size: 1.5rem;
+}
+
+.introButton {
+  color: var(--calcite-ui-text-1);
+  font-size: 1.2rem;
+  border-bottom: 1px solid var(--calcite-ui-text-1);
+  margin: 1rem;
+  padding: 0.3rem;
+  transition: opacity var(--transition-time);
+}
+
+.introButton:hover {
+  opacity: 1;
+}
+
+.exploreButton {
+  font-size: 1.7rem;
+  line-height: 1.5rem;
+  padding: 1rem 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  margin-top: 2rem;
+  transition: background-color var(--transition-time);
+}
+
+.exploreButton:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
