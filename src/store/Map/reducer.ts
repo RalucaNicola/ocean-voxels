@@ -17,6 +17,7 @@ export type MapState = {
   hoverEnabled: boolean;
   tooltipPosition: TooltipPosition | null;
   tooltipData: TooltipData | null;
+  introScreenEnabled: boolean;
 };
 
 const initialMapState: MapState = {
@@ -30,7 +31,8 @@ const initialMapState: MapState = {
   offsetFromGround: 500000,
   hoverEnabled: false,
   tooltipPosition: null,
-  tooltipData: null
+  tooltipData: null,
+  introScreenEnabled: true
 };
 
 const slice = createSlice({
@@ -87,6 +89,9 @@ const slice = createSlice({
     },
     setTooltipData: (state, action: PayloadAction<TooltipData>) => {
       state.tooltipData = action.payload;
+    },
+    toggleIntroScreen: (state) => {
+      state.introScreenEnabled = !state.introScreenEnabled;
     }
   }
 });
@@ -104,7 +109,8 @@ export const {
   toggleIsosurface,
   toggleHoverEnabled,
   setTooltipPosition,
-  setTooltipData
+  setTooltipData,
+  toggleIntroScreen
 } = slice.actions;
 
 export const { reducer } = slice;

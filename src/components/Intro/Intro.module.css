@@ -30,6 +30,18 @@
   font-size: 1.5rem;
 }
 
+.introTitle > a {
+  position: relative;
+  color: var(--calcite-ui-text-1);
+  text-decoration: none;
+  transition: color var(--transition-time);
+  background: linear-gradient(180deg, transparent 60%, rgb(255 209 111/ 50%) 80%, rgb(255 209 111/ 50%) 90%);
+}
+
+.introTitle > a:hover {
+  color: rgb(255, 209, 111);
+}
+
 .introButton {
   color: var(--calcite-ui-text-1);
   font-size: 1.2rem;
@@ -41,6 +53,14 @@
 
 .introButton:hover {
   opacity: 1;
+}
+
+.opaque {
+  opacity: 1;
+}
+
+.transparent {
+  opacity: 0.4;
 }
 
 .exploreButton {
