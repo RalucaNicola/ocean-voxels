@@ -49,12 +49,10 @@ const DiscreteLegend = ({ legendInfo, changedLegendSelection }: DiscreteLegendPr
     (accumulator, currentValue) => accumulator && currentValue.enabled,
     legendInfo.uniqueValues[0].enabled
   );
-  console.log(categorySelectionAll);
   const categorySelectionNone = !legendInfo.uniqueValues.reduce(
     (accumulator, currentValue) => accumulator || currentValue.enabled,
     legendInfo.uniqueValues[0].enabled
   );
-  console.log(categorySelectionNone);
   const toggleVisibility = (value: number) => {
     const updatedUniqueValues: VoxelUniqueValue[] = [];
     legendInfo.uniqueValues.forEach((uv) => {
