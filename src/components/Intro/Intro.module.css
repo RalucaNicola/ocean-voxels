@@ -8,7 +8,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url('./assets/ocean-resized.jpg');
+  background-color: #0d5f7d;
+  background-image: url('./ocean-resized.jpg');
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -21,7 +22,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('./assets/annotations.png');
+  background-image: url('./annotations.png');
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
