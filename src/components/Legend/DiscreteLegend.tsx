@@ -38,7 +38,7 @@ const ListItem = ({ enabled, color, value, setClick }: ListItemProps) => {
         {value}
       </div>
       <div className={styles.emuName} style={{ borderColor: fontColor }}>
-        {EMU_INFO_DATA.filter((d) => d.id === value)[0]?.description}
+        {EMU_INFO_DATA.filter((d) => d.id === value)[0]?.common}
       </div>
     </li>
   );

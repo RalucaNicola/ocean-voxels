@@ -202,7 +202,7 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
               let color = null;
               if (variable.description === 'general_name') {
                 const emuInfo = EMU_INFO_DATA.find((info) => info.id === Number(variableValue));
-                const value = `EMU ${variableValue}: ${emuInfo.description}`;
+                const value = `EMU ${variableValue}: ${emuInfo.common}`;
                 variableValue = value;
                 color = emuInfo.fill;
               } else {
