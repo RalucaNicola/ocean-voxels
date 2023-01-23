@@ -16,17 +16,17 @@ const Intro = () => {
           <div className={styles.titleContainer}>
             {visibleState === 'problem' ? (
               <p className={styles.introTitle}>
-                The ocean's health is fundamental to earth's survival, yet 95 percent of the ocean remains a mystery. In
+                The ocean's health is fundamental to Earth's survival, yet 95 percent of the ocean remains a mystery. In
                 a world of accelerating climate change and population pressures, a better understanding of the ocean is
                 necessary to reduce the risk of critically damaging or exhausting marine resources.
               </p>
             ) : (
               <p className={styles.introTitle}>
-                Based on{' '}
+                Based on the{' '}
                 <a href='https://www.ncei.noaa.gov/products/world-ocean-atlas' target='_blank'>
                   World Ocean Atlas
                 </a>
-                's global ocean variable measurements we classified the oceanic water bodies into 37 volumetric regions,
+                ' global ocean variable measurements we classified the oceanic water bodies into 37 volumetric regions,
                 called{' '}
                 <a href='https://www.esri.com/en-us/about/science/ecological-marine-units/overview' target='_blank'>
                   ecological marine units
