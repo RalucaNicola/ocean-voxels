@@ -45,19 +45,32 @@
 
 .appFooter span {
   color: rgba(255 255 255 / 50%);
-  padding: 10px;
 }
 
-a {
+.appFooter a {
   color: rgba(255 255 255 / 50%);
   text-decoration: none;
+  display: inline-block;
 }
 
-a:hover {
+.appFooter a:hover {
   color: rgba(255 255 255 / 80%);
 }
 
 .attribution {
   padding: 10px;
   background-color: rgba(1, 46, 68, 0.85);
+}
+
+@media (max-width: 1000px) {
+  .appFooter {
+    right: 0;
+    font-size: var(--calcite-font-size--2);
+    background-color: rgba(1, 46, 68, 0.85);
+  }
+  .attribution {
+    margin: 0;
+    padding: 5px;
+    background: none;
+  }
 }

@@ -18,38 +18,38 @@ const Footer = () => {
           Data attribution{' '}
           <a href='https://www.usgs.gov/' target='_blank'>
             USGS
-          </a>
-          <span>|</span>
+          </a>{' '}
+          <span>|</span>{' '}
           <a href='https://www.noaa.gov/' target='_blank'>
             NOAA
-          </a>
-          <span>|</span>
+          </a>{' '}
+          <span>|</span>{' '}
           <a href='https://www.nasa.gov/' target='_blank'>
             NASA
-          </a>
-          <span>|</span>
+          </a>{' '}
+          <span>|</span>{' '}
           <a href='https://www.fws.gov/' target='_blank'>
-            U.S. Fish and Wildlife Service
-          </a>
-          <span>|</span>
+            FWS
+          </a>{' '}
+          <span>|</span>{' '}
           <a href='https://niwa.co.nz/' target='_blank'>
             NIWA
-          </a>
-          <span>|</span>
+          </a>{' '}
+          <span>|</span>{' '}
           <a href='https://www.natureserve.org/' target='_blank'>
             NatureServe
-          </a>
-          <span>|</span>
+          </a>{' '}
+          <span>|</span>{' '}
           <a href='https://mgel.env.duke.edu/' target='_blank'>
             Duke Marine Geospatial Ecology Lab
-          </a>
-          <span>|</span>
+          </a>{' '}
+          <span>|</span>{' '}
           <a href='https://www.grida.no/' target='_blank'>
             Grid Arendal
-          </a>
-          <span>|</span>
+          </a>{' '}
+          <span>|</span>{' '}
           <a href='https://www.whoi.edu/' target='_blank'>
-            Woods Hole Oceanographic Institution
+            WHOI
           </a>
           <br></br>
           Built with{' '}
