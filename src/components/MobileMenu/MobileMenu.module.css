@@ -1,0 +1,73 @@
+.mobileMenuButton {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.mobileMenuContainer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0 0 0 /80%);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 80px 40px 40px 41px;
+  font-size: var(--large-font-size);
+  overflow: auto;
+  line-height: 4rem;
+  box-sizing: border-box;
+  text-align: center;
+  z-index: 2;
+}
+
+.mobileMenuList {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.mobileMenuList button {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: var(--calcite-font-weight-light);
+}
+
+.mobileMenuList button:hover {
+  color: white;
+}
+
+.closeButton {
+  position: absolute;
+  top: 25px;
+  right: 15px;
+  width: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.closeButton:hover {
+  opacity: 1;
+}
+
+.closeButton img {
+  width: 100%;
+}
+
+.menuLine {
+  fill: none;
+  stroke: white;
+  stroke-linecap: round;
+  stroke-width: 1px;
+  transition: stroke 200ms;
+}
+
+@media (max-width: 1000px) {
+  .mobileMenuButton {
+    display: revert;
+  }
+}

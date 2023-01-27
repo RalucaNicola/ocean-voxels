@@ -17,6 +17,7 @@ button {
   cursor: pointer;
   padding: 0;
   color: var(--calcite-ui-text-1);
+  font-family: var(--calcite-sans-family);
 }
 
 /***********************

@@ -5,6 +5,7 @@ import Footer from '../Footer';
 import ToolsMenu from '../ToolsMenu';
 import Tooltip from '../Tooltip';
 import Intro from '../Intro';
+import MobileMenu from '../MobileMenu';
 
 const App = () => {
   return (
@@ -13,9 +14,10 @@ const App = () => {
       <VariablesMenu></VariablesMenu>
       <ToolsMenu></ToolsMenu>
       <Tooltip></Tooltip>
+      <MobileMenu></MobileMenu>
       <Intro></Intro>
-      <Title></Title>
       <Footer></Footer>
+      <Title></Title>
     </div>
   );
 };
