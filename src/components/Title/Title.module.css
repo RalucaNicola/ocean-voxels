@@ -1,7 +1,22 @@
-.title {
+.titleContainer {
   position: absolute;
   top: 20px;
   left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.mobileMenuButton {
+  display: none;
+}
+
+.menuLine {
+  fill: none;
+  stroke: white;
+  stroke-linecap: round;
+  stroke-width: 1px;
+  transition: stroke 200ms;
 }
 
 .title h1 {
@@ -15,4 +30,10 @@
 .capitalLetter {
   font-size: 1.7rem;
   opacity: 0.8;
+}
+
+@media (max-width: 1000px) {
+  .mobileMenuButton {
+    display: revert;
+  }
 }
