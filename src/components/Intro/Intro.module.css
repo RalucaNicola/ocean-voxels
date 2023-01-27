@@ -113,3 +113,13 @@
     margin-top: 0.5rem;
   }
 }
+@media (max-height: 500px) {
+  .introTitle {
+    margin: 0;
+    font-size: 1rem;
+  }
+  .introButton {
+    margin: 0.3rem 1rem;
+    font-size: 1rem;
+  }
+}
