@@ -3,6 +3,11 @@
   position: absolute;
   top: 20px;
   right: 20px;
+  opacity: 0.8;
+}
+
+.mobileMenuButton:hover {
+  opacity: 1;
 }
 
 .mobileMenuContainer {
@@ -41,13 +46,13 @@
 
 .closeButton {
   position: absolute;
-  top: 25px;
-  right: 15px;
+  top: 20px;
+  right: 20px;
   width: 30px;
   background: none;
   border: none;
   cursor: pointer;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 
 .closeButton:hover {

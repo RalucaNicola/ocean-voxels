@@ -1,7 +1,7 @@
 import DistanceParameters from 'esri/rest/support/DistanceParameters';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { toggleIntroScreen } from '../../store/Map/reducer';
+import { toggleIntroScreen, setToolsMenuVisible, setVariablesMenuVisible } from '../../store/Map/reducer';
 import * as styles from './MobileMenu.module.css';
 
 const MobileMenu = () => {
@@ -19,7 +19,7 @@ const MobileMenu = () => {
         className={styles.mobileMenuButton}
       >
         <svg width='50px' height='25px'>
-          <line className={styles.menuLine} x1='1.5' y1='1.5' x2='36.5' y2='1.5' />
+          <line className={styles.menuLine} x1='1.5' y1='1.5' x2='48.5' y2='1.5' />
           <line className={styles.menuLine} x1='1.5' y1='12.5' x2='36.5' y2='12.5' />
           <line className={styles.menuLine} x1='1.5' y1='23.5' x2='36.5' y2='23.5' />
         </svg>
@@ -30,10 +30,26 @@ const MobileMenu = () => {
         </button>
         <ul className={styles.mobileMenuList}>
           <li>
-            <button onClick={toggleMenu}>Variables</button>
+            <button
+              onClick={() => {
+                toggleMenu();
+                dispatch(setToolsMenuVisible(false));
+                dispatch(setVariablesMenuVisible(true));
+              }}
+            >
+              Variables
+            </button>
           </li>
           <li>
-            <button onClick={toggleMenu}>Tools</button>
+            <button
+              onClick={() => {
+                toggleMenu();
+                dispatch(setToolsMenuVisible(true));
+                dispatch(setVariablesMenuVisible(false));
+              }}
+            >
+              Tools
+            </button>
           </li>
           <li>
             <button

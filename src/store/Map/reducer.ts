@@ -18,6 +18,8 @@ export type MapState = {
   tooltipPosition: TooltipPosition | null;
   tooltipData: TooltipData | null;
   introScreenEnabled: boolean;
+  toolsMenuVisible: boolean;
+  variablesMenuVisible: boolean;
 };
 
 const initialMapState: MapState = {
@@ -32,7 +34,9 @@ const initialMapState: MapState = {
   hoverEnabled: false,
   tooltipPosition: null,
   tooltipData: null,
-  introScreenEnabled: true
+  introScreenEnabled: true,
+  toolsMenuVisible: false,
+  variablesMenuVisible: true
 };
 
 const slice = createSlice({
@@ -92,6 +96,12 @@ const slice = createSlice({
     },
     toggleIntroScreen: (state) => {
       state.introScreenEnabled = !state.introScreenEnabled;
+    },
+    setToolsMenuVisible: (state, action: PayloadAction<boolean>) => {
+      state.toolsMenuVisible = action.payload;
+    },
+    setVariablesMenuVisible: (state, action: PayloadAction<boolean>) => {
+      state.variablesMenuVisible = action.payload;
     }
   }
 });
@@ -110,7 +120,9 @@ export const {
   toggleHoverEnabled,
   setTooltipPosition,
   setTooltipData,
-  toggleIntroScreen
+  toggleIntroScreen,
+  setToolsMenuVisible,
+  setVariablesMenuVisible
 } = slice.actions;
 
 export const { reducer } = slice;

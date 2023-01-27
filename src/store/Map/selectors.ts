@@ -58,3 +58,7 @@ export const selectTooltipPosition = (state: RootState) => state.Map.tooltipPosi
 export const selectTooltipData = (state: RootState) => state.Map.tooltipData;
 
 export const selectIntroScreenEnabled = (state: RootState) => state.Map.introScreenEnabled;
+
+export const selectToolsMenuVisible = (state: RootState) => state.Map.toolsMenuVisible;
+
+export const selectVariablesMenuVisible = (state: RootState) => state.Map.variablesMenuVisible;
