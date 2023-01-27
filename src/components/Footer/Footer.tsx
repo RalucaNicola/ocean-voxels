@@ -7,7 +7,6 @@ import * as styles from './Footer.module.css';
 const Footer = () => {
   const introScreenEnabled = useSelector(selectIntroScreenEnabled);
   const isDesktopSize = useIsDesktopSize();
-  console.log('from footer component', isDesktopSize);
   const dispatch = useDispatch();
   return (
     (isDesktopSize || introScreenEnabled) && (

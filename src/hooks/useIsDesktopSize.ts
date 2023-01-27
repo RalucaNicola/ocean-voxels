@@ -8,7 +8,6 @@ const useIsDesktopSize = () => {
   const [isDesktopSize, setIsDesktopSize] = useState(getIsDesktopSize());
 
   const handleResize = () => {
-    console.log('from hook', getIsDesktopSize());
     setIsDesktopSize(getIsDesktopSize());
   };
 
