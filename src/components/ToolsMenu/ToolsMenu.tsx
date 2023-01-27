@@ -21,18 +21,47 @@ import { useDispatch, useSelector } from 'react-redux';
 import Section from './Section';
 import OffsetSlider from './OffsetSlider';
 import IsosurfaceSlider from './IsosurfaceSlider';
+import useIsDesktopSize from '../../hooks/useIsDesktopSize';
 
 const ToolsMenu = () => {
   const toolsMenuVisible = useSelector(selectToolsMenuVisible);
   const sliceEnabled = useSelector(selectSliceEnabled);
   const sectionEnabled = useSelector(selectSectionEnabled);
   const hoverEnabled = useSelector(selectHoverEnabled);
+  const isDesktopSize = useIsDesktopSize();
   const dispatch = useDispatch();
   return (
-    <div className={styles.container}>
-      <div className={styles.toolsContainer} style={!toolsMenuVisible ? { maxWidth: '0' } : { maxWidth: '30vw' }}>
+    <div className={isDesktopSize ? styles.container : styles.mobileContainer}>
+      <div
+        className={styles.toolsContainer}
+        style={
+          toolsMenuVisible
+            ? isDesktopSize
+              ? { maxWidth: '30vw' }
+              : { display: 'revert', maxWidth: '100vh' }
+            : isDesktopSize
+            ? { maxWidth: 0 }
+            : { display: 'none' }
+        }
+      >
         {' '}
-        <div className={styles.fixedWidth} style={!toolsMenuVisible ? { opacity: 0 } : { opacity: 1 }}>
+        {!isDesktopSize && (
+          <div className={styles.closeHeader}>
+            <h2>Tools</h2>
+            <button
+              className={styles.closeButton}
+              onClick={() => {
+                dispatch(setToolsMenuVisible(false));
+              }}
+            >
+              <img src='./assets/close.svg'></img>
+            </button>
+          </div>
+        )}
+        <div
+          className={isDesktopSize ? styles.fixedWidth : styles.toolsWrapper}
+          style={!toolsMenuVisible ? { opacity: 0 } : { opacity: 1 }}
+        >
           {/* Slice container */}
           <div className={styles.sliceContainer}>
             <CalciteLabel layout='inline-space-between' scale='l'>
@@ -90,16 +119,18 @@ const ToolsMenu = () => {
           <IsosurfaceSlider></IsosurfaceSlider>
         </div>
       </div>
-      <div className={styles.arrowContainer}>
-        <button
-          className={`${styles.button} ${!toolsMenuVisible ? styles.arrowLeft : ''}`}
-          onClick={() => {
-            dispatch(setToolsMenuVisible(!toolsMenuVisible));
-          }}
-        >
-          <img src='./assets/arrows-back.svg'></img>
-        </button>
-      </div>
+      {isDesktopSize && (
+        <div className={styles.arrowContainer}>
+          <button
+            className={`${styles.button} ${!toolsMenuVisible ? styles.arrowLeft : ''}`}
+            onClick={() => {
+              dispatch(setToolsMenuVisible(!toolsMenuVisible));
+            }}
+          >
+            <img src='./assets/arrows-back.svg'></img>
+          </button>
+        </div>
+      )}
     </div>
   );
 };

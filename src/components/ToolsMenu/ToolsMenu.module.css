@@ -67,3 +67,53 @@
 .slider {
   padding: 0 20px;
 }
+
+.mobileContainer {
+  background-color: rgba(0 0 0 / 70%);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 30vh;
+}
+
+@media (max-width: 1000px) {
+  .toolsContainer {
+    margin: 10px;
+  }
+
+  .closeButton {
+    width: 10px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  .closeButton:hover {
+    opacity: 1;
+  }
+
+  .closeButton img {
+    width: 100%;
+  }
+
+  .closeHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 10px 0;
+  }
+
+  .closeHeader > h2 {
+    font-size: 0.8rem;
+    font-weight: var(--calcite-font-weight-normal);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0.2rem 0;
+  }
+
+  .toolsWrapper {
+    height: calc(30vh - 45px);
+    overflow: auto;
+    padding-right: 10px;
+  }
+}
