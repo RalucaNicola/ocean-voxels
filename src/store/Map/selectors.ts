@@ -54,6 +54,8 @@ export const selectRenderMode = createSelector(
 
 export const selectHoverEnabled = (state: RootState) => state.Map.hoverEnabled;
 
+export const selectScaleEnabled = (state: RootState) => state.Map.scaleEnabled;
+
 export const selectTooltipPosition = (state: RootState) => state.Map.tooltipPosition;
 export const selectTooltipData = (state: RootState) => state.Map.tooltipData;
 

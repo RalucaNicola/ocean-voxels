@@ -11,13 +11,13 @@ const OffsetSlider = () => {
   const dispatch = useDispatch();
   return (
     <CalciteLabel scale='l'>
-      Offset from ground in meters:
+      Offset from ground in km:
       <CalciteSlider
         className={styles.slider}
-        min={0}
-        max={2 * Math.pow(10, 6)}
+        min={2500}
+        max={5000}
         value={offsetFromGround}
-        step={10000}
+        step={100}
         scale={'l'}
         snap={true}
         groupSeparator={true}

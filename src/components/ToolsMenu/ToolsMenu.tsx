@@ -8,6 +8,7 @@ import {
   selectSliceEnabled,
   selectSectionEnabled,
   selectHoverEnabled,
+  selectScaleEnabled,
   selectToolsMenuVisible
 } from '../../store/Map/selectors';
 import {
@@ -15,6 +16,7 @@ import {
   toggleSection,
   toggleSlice,
   toggleHoverEnabled,
+  toggleScaleEnabled,
   setToolsMenuVisible
 } from '../../store/Map/reducer';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,6 +30,7 @@ const ToolsMenu = () => {
   const sliceEnabled = useSelector(selectSliceEnabled);
   const sectionEnabled = useSelector(selectSectionEnabled);
   const hoverEnabled = useSelector(selectHoverEnabled);
+  const scaleEnabled = useSelector(selectScaleEnabled);
   const isDesktopSize = useIsDesktopSize();
   const dispatch = useDispatch();
   return (
@@ -113,6 +116,13 @@ const ToolsMenu = () => {
             <CalciteSwitch
               checked={hoverEnabled ? true : undefined}
               onCalciteSwitchChange={() => dispatch(toggleHoverEnabled())}
+            ></CalciteSwitch>
+          </CalciteLabel>
+          <CalciteLabel layout='inline-space-between' scale='l'>
+            Display scale{' '}
+            <CalciteSwitch
+              checked={scaleEnabled ? true : undefined}
+              onCalciteSwitchChange={() => dispatch(toggleScaleEnabled())}
             ></CalciteSwitch>
           </CalciteLabel>
           <LegendContainer></LegendContainer>

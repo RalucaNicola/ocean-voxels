@@ -1,9 +1,9 @@
 import { EmuVariable } from './types/types';
 
-export const WEB_SCENE_ID = '62c92f0a45d34567aa73a9efaa80949c';
+export const WEB_SCENE_ID = '7a38f3d661cc4134aa64b10a5144f00f';
 export const VOXEL_LAYER_TITLE = 'EMU v5';
 export const VARIABLE_MAP = {
-  general_name: 'Ecological marine units',
+  cluster37: 'Ecological marine units',
   temp: 'Temperature',
   salinity: 'Salinity',
   dissO2: 'Dissolved O2',
@@ -40,7 +40,8 @@ export const INITIAL_SECTION_PARAMETERS = {
   orientation: 90
 };
 
-export const INITIAL_SELECTED_VARIABLE = 'general_name';
+export const INITIAL_SELECTED_VARIABLE = 'cluster37';
+export const INITIAL_VERTICAL_OFFSET = 2500;
 
 export const EMU_INFO_DATA = [
   {

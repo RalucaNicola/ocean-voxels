@@ -16,7 +16,14 @@ import {
 } from '../../store/Map/selectors';
 import { setVoxelVariables, setLegendInfos, setTooltipPosition, setTooltipData } from '../../store/Map/reducer';
 import { LegendInfo, TooltipData, VoxelUniqueValue, VoxelVariable } from '../../types/types';
-import { VOXEL_LAYER_TITLE, VARIABLE_MAP, INITIAL_SELECTED_VARIABLE, EMU_UNITS, EMU_INFO_DATA } from '../../config';
+import {
+  VOXEL_LAYER_TITLE,
+  VARIABLE_MAP,
+  INITIAL_SELECTED_VARIABLE,
+  EMU_UNITS,
+  EMU_INFO_DATA,
+  INITIAL_VERTICAL_OFFSET
+} from '../../config';
 import Collection from '@arcgis/core/core/Collection';
 import { Point } from '@arcgis/core/geometry';
 
@@ -45,7 +52,7 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
 
   useEffect(() => {
     if (layer && offsetFromGround) {
-      layer.getVolumeStyle(null).verticalOffset = offsetFromGround;
+      layer.getVolumeStyle(null).verticalOffset = offsetFromGround * 1000;
     }
   }, [offsetFromGround]);
 
@@ -115,71 +122,74 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
   useEffect(() => {
     if (view) {
       const layer = view.map.layers.find((layer) => layer.title === VOXEL_LAYER_TITLE) as IVoxelLayer;
-      layer.when(() => {
-        setLayer(layer);
-        const voxelVariables: VoxelVariable[] = [];
-        const legendInfos = [];
-        for (let key in VARIABLE_MAP) {
-          if (VARIABLE_MAP.hasOwnProperty(key)) {
-            const variable = layer.variables.find((v) => v.name === key);
-            const { id, name, description } = variable;
-            let unit = '';
-            if (EMU_UNITS.hasOwnProperty(VARIABLE_MAP[key])) {
-              unit = EMU_UNITS[VARIABLE_MAP[key]];
-            }
-            const continuous = variable.renderingFormat.continuity === 'continuous';
-            const style = layer.getVariableStyle(id);
-            const variableInfo: VoxelVariable = {
-              description,
-              name: VARIABLE_MAP[name],
-              id,
-              unit,
-              continuous,
-              selected: key === INITIAL_SELECTED_VARIABLE
-            };
-            variables.current.push(variableInfo);
-            if (continuous) {
-              const range = style.transferFunction.stretchRange;
-              variableInfo.isosurfaceValue = formatDecimals((range[0] + range[1]) / 2);
-              variableInfo.range = [formatDecimals(range[0]), formatDecimals(range[1])];
-            }
-            voxelVariables.push(variableInfo);
-            const legendInfo: LegendInfo = {
-              id,
-              continuous
-            };
-            if (continuous && style.transferFunction) {
-              legendInfo.range = style.transferFunction.stretchRange;
-              legendInfo.colorStops = [];
-              style.transferFunction.colorStops.forEach((colorStop) => {
-                const { color, position } = colorStop;
-                const { r, g, b, a } = color;
-                legendInfo.colorStops.push({
-                  color: { r, g, b, a },
-                  position
-                });
-              });
-            }
-            if (!continuous && style.uniqueValues && style.uniqueValues.length > 0) {
-              legendInfo.uniqueValues = [];
-              style.uniqueValues.forEach((uv: VoxelUniqueValue) => {
-                const { r, g, b, a } = uv.color;
-                if (uv.value >= 0 && uv.value <= 37) {
-                  legendInfo.uniqueValues.push({
-                    label: uv.label,
-                    value: uv.value,
+      if (layer) {
+        layer.when(() => {
+          setLayer(layer);
+          layer.getVolumeStyle(null).verticalOffset = INITIAL_VERTICAL_OFFSET * 1000;
+          const voxelVariables: VoxelVariable[] = [];
+          const legendInfos = [];
+          for (let key in VARIABLE_MAP) {
+            if (VARIABLE_MAP.hasOwnProperty(key)) {
+              const variable = layer.variables.find((v) => v.name === key);
+              const { id, name, description } = variable;
+              let unit = '';
+              if (EMU_UNITS.hasOwnProperty(VARIABLE_MAP[key])) {
+                unit = EMU_UNITS[VARIABLE_MAP[key]];
+              }
+              const continuous = variable.renderingFormat.continuity === 'continuous';
+              const style = layer.getVariableStyle(id);
+              const variableInfo: VoxelVariable = {
+                description,
+                name: VARIABLE_MAP[name],
+                id,
+                unit,
+                continuous,
+                selected: key === INITIAL_SELECTED_VARIABLE
+              };
+              variables.current.push(variableInfo);
+              if (continuous) {
+                const range = style.transferFunction.stretchRange;
+                variableInfo.isosurfaceValue = formatDecimals((range[0] + range[1]) / 2);
+                variableInfo.range = [formatDecimals(range[0]), formatDecimals(range[1])];
+              }
+              voxelVariables.push(variableInfo);
+              const legendInfo: LegendInfo = {
+                id,
+                continuous
+              };
+              if (continuous && style.transferFunction) {
+                legendInfo.range = style.transferFunction.stretchRange;
+                legendInfo.colorStops = [];
+                style.transferFunction.colorStops.forEach((colorStop) => {
+                  const { color, position } = colorStop;
+                  const { r, g, b, a } = color;
+                  legendInfo.colorStops.push({
                     color: { r, g, b, a },
-                    enabled: uv.enabled
+                    position
                   });
-                }
-              });
+                });
+              }
+              if (!continuous && style.uniqueValues && style.uniqueValues.length > 0) {
+                legendInfo.uniqueValues = [];
+                style.uniqueValues.forEach((uv: VoxelUniqueValue) => {
+                  const { r, g, b, a } = uv.color;
+                  if (uv.value >= 0 && uv.value <= 37) {
+                    legendInfo.uniqueValues.push({
+                      label: uv.label,
+                      value: uv.value,
+                      color: { r, g, b, a },
+                      enabled: uv.enabled
+                    });
+                  }
+                });
+              }
+              legendInfos.push(legendInfo);
             }
-            legendInfos.push(legendInfo);
           }
-        }
-        dispatch(setVoxelVariables(voxelVariables));
-        dispatch(setLegendInfos(legendInfos));
-      });
+          dispatch(setVoxelVariables(voxelVariables));
+          dispatch(setLegendInfos(legendInfos));
+        });
+      }
     }
   }, [view]);
 
@@ -200,7 +210,7 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
               );
               let variableValue = attributes['Voxel.ServiceValue'].split(' ')[0];
               let color = null;
-              if (variable.description === 'general_name') {
+              if (variable.description === 'cluster37_id') {
                 const emuInfo = EMU_INFO_DATA.find((info) => info.id === Number(variableValue));
                 const value = `EMU ${variableValue}: ${emuInfo.common}`;
                 variableValue = value;
