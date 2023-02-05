@@ -53,12 +53,19 @@ const Footer = () => {
             <span>|</span>{' '}
             <a href='https://www.whoi.edu/' target='_blank'>
               WHOI
-            </a>
-            <br></br>
-            Built with{' '}
+            </a>{' '}
+            / Built with{' '}
             <a href='https://developers.arcgis.com/javascript/latest/' target='_blank'>
               ArcGIS Maps SDK for JavaScript
-            </a>
+            </a>{' '}
+            /{' '}
+            <a
+              href='https://www.researchgate.net/publication/315533572_A_Three-Dimensional_Mapping_of_the_Ocean_Based_on_Environmental_Data'
+              target='_blank'
+            >
+              Research article
+            </a>{' '}
+            in <i>Oceanography</i>, March 2017
           </p>
         )}
         {!introScreenEnabled && (
