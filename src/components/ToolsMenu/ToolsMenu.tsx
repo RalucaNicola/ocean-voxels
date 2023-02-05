@@ -119,12 +119,15 @@ const ToolsMenu = () => {
             ></CalciteSwitch>
           </CalciteLabel>
           <CalciteLabel layout='inline-space-between' scale='l'>
-            Display scale{' '}
+            Display vertical scale{' '}
             <CalciteSwitch
               checked={scaleEnabled ? true : undefined}
               onCalciteSwitchChange={() => dispatch(toggleScaleEnabled())}
             ></CalciteSwitch>
           </CalciteLabel>
+          <p className={styles.note}>
+            <sup>*</sup>depths are exaggerated 500 times
+          </p>
           <LegendContainer></LegendContainer>
           <IsosurfaceSlider></IsosurfaceSlider>
         </div>

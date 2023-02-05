@@ -73,6 +73,12 @@
   max-height: 30vh;
 }
 
+.note {
+  font-size: 0.8rem;
+  margin: 0;
+  font-style: italic;
+}
+
 @media (max-width: 1000px) {
   .toolsContainer {
     margin: 10px;
