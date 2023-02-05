@@ -46,7 +46,7 @@ export const INITIAL_VERTICAL_OFFSET = 2500;
 export const EMU_INFO_DATA = [
   {
     id: 0,
-    fill: '#ffffff',
+    fill: '#000',
     description: 'Epipelagic, Moderate to Cool, Euhaline, Oxic, Medium Nitrate, Low Phosphate, Low Silicate',
     common: 'Shallow, Cool, Normal Salinity, Moderate Oxygen, Medium Nitrate, Low Phosphate, Low Silicate'
   },

@@ -11,6 +11,8 @@
   align-items: center;
   cursor: pointer;
   transition: transform var(--transition-time), background-color var(--transition-time);
+
+  color: white;
 }
 
 .emuList > li:hover {
@@ -26,12 +28,23 @@
   padding: 15px;
 }
 
-.emuName {
-  border-left: 1px solid var(--calcite-ui-text-1);
-  padding-left: 10px;
+.emuRegion {
+  font-weight: bold;
+  color: #666666;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 4px;
+}
+
+.emuPercent,
+.emuCommon {
+  font-size: 0.9rem;
+  padding-top: 5px;
 }
 
 .selectOptions {
   display: flex;
   gap: 10px;
+}
+.sortOptions {
+  padding-top: 10px;
 }

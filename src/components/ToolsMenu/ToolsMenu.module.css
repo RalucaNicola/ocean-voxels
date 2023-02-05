@@ -48,14 +48,10 @@
   overflow: auto;
 }
 
-.sliceContainer,
-.sectionContainer {
-  margin-bottom: 1rem;
-}
-
 .sliceOptions {
   display: flex;
   gap: 10px;
+  padding-bottom: 1rem;
 }
 
 .surfaceGraphic {
