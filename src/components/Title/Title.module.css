@@ -2,6 +2,7 @@
   position: absolute;
   top: 20px;
   left: 20px;
+  right: 70px;
 }
 .title h1 {
   font-weight: 400;
@@ -14,4 +15,14 @@
 .capitalLetter {
   font-size: 1.7rem;
   opacity: 0.8;
+}
+
+@media (max-width: 1000px) {
+  .title h1 {
+    font-size: 1rem;
+  }
+
+  .capital-letter {
+    font-size: 1.3rem;
+  }
 }
