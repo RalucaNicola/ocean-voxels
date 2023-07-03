@@ -24,6 +24,7 @@ import Section from './Section';
 import OffsetSlider from './OffsetSlider';
 import IsosurfaceSlider from './IsosurfaceSlider';
 import useIsDesktopSize from '../../hooks/useIsDesktopSize';
+import Bookmark from './Bookmark';
 
 const ToolsMenu = () => {
   const toolsMenuVisible = useSelector(selectToolsMenuVisible);
@@ -130,6 +131,11 @@ const ToolsMenu = () => {
           </p>
           <LegendContainer></LegendContainer>
           <IsosurfaceSlider></IsosurfaceSlider>
+          <p>Bookmarks</p>
+          <div className={styles.bookmarks}>
+            <Bookmark id={1} title={'2D'}></Bookmark>
+            <Bookmark id={2} title={'3D'}></Bookmark>
+          </div>
         </div>
       </div>
       {isDesktopSize && (

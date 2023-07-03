@@ -21,6 +21,7 @@ export type MapState = {
   introScreenEnabled: boolean;
   toolsMenuVisible: boolean;
   variablesMenuVisible: boolean;
+  bookmark: Number | null;
 };
 
 const initialMapState: MapState = {
@@ -38,7 +39,8 @@ const initialMapState: MapState = {
   tooltipData: null,
   introScreenEnabled: true,
   toolsMenuVisible: false,
-  variablesMenuVisible: true
+  variablesMenuVisible: true,
+  bookmark: null
 };
 
 const slice = createSlice({
@@ -107,6 +109,9 @@ const slice = createSlice({
     },
     setVariablesMenuVisible: (state, action: PayloadAction<boolean>) => {
       state.variablesMenuVisible = action.payload;
+    },
+    setBookmark: (state, action: PayloadAction<Number>) => {
+      state.bookmark = action.payload;
     }
   }
 });
@@ -128,7 +133,8 @@ export const {
   setTooltipData,
   toggleIntroScreen,
   setToolsMenuVisible,
-  setVariablesMenuVisible
+  setVariablesMenuVisible,
+  setBookmark
 } = slice.actions;
 
 export const { reducer } = slice;

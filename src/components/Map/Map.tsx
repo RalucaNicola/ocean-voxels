@@ -5,6 +5,8 @@ import SceneView from '@arcgis/core/views/SceneView';
 import WebScene from '@arcgis/core/WebScene';
 import { ExaggeratedElevationLayer } from './ExaggeratedTerrain';
 import Collection from '@arcgis/core/core/Collection';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/storeConfiguration';
 
 interface MapProps {
   webmapId: string;
@@ -14,6 +16,7 @@ interface MapProps {
 const Map: FC<MapProps> = ({ webmapId, children }: MapProps) => {
   const mapDivRef = useRef<HTMLDivElement>();
   const [view, setView] = useState<ISceneView>();
+  const bookmark = useSelector((state: RootState) => state.Map.bookmark);
 
   // map initialization
   useEffect(() => {
@@ -56,6 +59,28 @@ const Map: FC<MapProps> = ({ webmapId, children }: MapProps) => {
       }
     };
   }, []);
+
+  useEffect(() => {
+    if (view && bookmark) {
+      switch (bookmark) {
+        case 1:
+          view.goTo({
+            position: [42.13562565, -13.37816259, 67237282.25199],
+            heading: 359.37,
+            tilt: 0.5
+          });
+          view.map.ground.opacity = 1;
+          break;
+        case 2:
+          view.goTo({
+            position: [-243.7025601, -249.59492493, 15695814.97173],
+            heading: 43.64,
+            tilt: 63.3
+          });
+          view.map.ground.opacity = 0;
+      }
+    }
+  }, [view, bookmark]);
 
   return (
     <>

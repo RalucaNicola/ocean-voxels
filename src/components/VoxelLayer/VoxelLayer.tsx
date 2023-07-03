@@ -152,6 +152,10 @@ const VoxelLayer: FC<Props> = ({ view }: Props) => {
                 variableInfo.isosurfaceValue = formatDecimals((range[0] + range[1]) / 2);
                 variableInfo.range = [formatDecimals(range[0]), formatDecimals(range[1])];
               }
+              if (variableInfo.name === 'Salinity') {
+                variableInfo.range = [33, 38];
+                layer.getVariableStyle(id).transferFunction.stretchRange = variableInfo.range;
+              }
               voxelVariables.push(variableInfo);
               const legendInfo: LegendInfo = {
                 id,

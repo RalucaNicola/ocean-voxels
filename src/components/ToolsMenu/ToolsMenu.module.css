@@ -79,6 +79,13 @@
   font-style: italic;
 }
 
+.bookmarks {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 0 10px;
+}
+
 @media (max-width: 1000px) {
   .toolsContainer {
     margin: 10px;

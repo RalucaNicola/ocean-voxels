@@ -14,8 +14,8 @@ const OffsetSlider = () => {
       Offset from ground in km:
       <CalciteSlider
         className={styles.slider}
-        min={2500}
-        max={5000}
+        min={100}
+        max={2500}
         value={offsetFromGround}
         step={100}
         scale={'l'}

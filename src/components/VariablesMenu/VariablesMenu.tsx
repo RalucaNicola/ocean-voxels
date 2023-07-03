@@ -15,7 +15,6 @@ const VariablesMenu = () => {
     // in case both menus are open, we need to choose one on mobile
     if (!isDesktopSize && variablesMenuVisible && toolsMenuVisible) {
       dispatch(setToolsMenuVisible(false));
-      console.log('I ran');
     }
   }, [isDesktopSize, variablesMenuVisible, toolsMenuVisible]);
 
