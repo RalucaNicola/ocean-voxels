@@ -40,7 +40,7 @@ export const INITIAL_SECTION_PARAMETERS = {
   orientation: 90
 };
 
-export const INITIAL_SELECTED_VARIABLE = 'salinity';
+export const INITIAL_SELECTED_VARIABLE = 'nitrate';
 export const INITIAL_VERTICAL_OFFSET = 2500;
 
 export const EMU_INFO_DATA = [

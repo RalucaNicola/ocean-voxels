@@ -65,15 +65,15 @@ const Map: FC<MapProps> = ({ webmapId, children }: MapProps) => {
       switch (bookmark) {
         case 1:
           view.goTo({
-            position: [42.13562565, -13.37816259, 67237282.25199],
-            heading: 359.37,
+            position: [-16.38028963, -16.64164386, 67237282.25199],
+            heading: 0.0,
             tilt: 0.5
           });
           view.map.ground.opacity = 1;
           break;
         case 2:
           view.goTo({
-            position: [-243.7025601, -249.59492493, 15695814.97173],
+            position: [-387.18032814, -338.67150254, 26051305.87835],
             heading: 43.64,
             tilt: 63.3
           });
